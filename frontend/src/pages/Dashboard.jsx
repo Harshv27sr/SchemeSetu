@@ -10,6 +10,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('recommendations');
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
   const [selectedDocType, setSelectedDocType] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
   
   // Premium Features States
   const [certificateApp, setCertificateApp] = useState(null);
@@ -36,12 +37,13 @@ const Dashboard = () => {
     e.preventDefault();
     if (!selectedDocType) return;
     setSubmittingQuery(true);
-    const fileName = `certificate_${selectedDocType.toLowerCase().replace(/\s+/g, '_')}_scanned.png`;
+    const fileName = selectedFile ? selectedFile.name : `certificate_${selectedDocType.toLowerCase().replace(/\s+/g, '_')}_scanned.png`;
     const res = await uploadDocument(selectedDocType, fileName);
     setSubmittingQuery(false);
     if (res.success) {
       setUploadModalOpen(false);
       setSelectedDocType('');
+      setSelectedFile(null);
     } else {
       alert("Upload failed: " + res.error);
     }
@@ -656,11 +658,24 @@ const Dashboard = () => {
                 </select>
               </div>
 
-              {/* Fake file select box */}
-              <div className="border-2 border-dashed border-slate-200 dark:border-white/10 hover:border-govblue-500 bg-slate-50 dark:bg-slate-950 hover:bg-slate-100/40 rounded-2xl p-6 text-center transition-all cursor-pointer">
-                <Upload className="w-8 h-8 text-slate-300 dark:text-slate-650 mx-auto mb-2" />
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-400 block">Click or Drag Certificate here</span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 block mt-1">PDF, JPG, PNG (Max 5MB)</span>
+              {/* Real file select box simulation */}
+              <div 
+                className={`border-2 ${selectedFile ? 'border-solid border-govgreen-400 bg-govgreen-50/50' : 'border-dashed border-slate-200 dark:border-white/10 hover:border-govblue-500 bg-slate-50 dark:bg-slate-950 hover:bg-slate-100/40'} rounded-2xl p-6 text-center transition-all cursor-pointer`}
+                onClick={() => document.getElementById('actual-file-input').click()}
+              >
+                <input 
+                  type="file" 
+                  id="actual-file-input" 
+                  className="hidden" 
+                  onChange={(e) => { if(e.target.files[0]) setSelectedFile(e.target.files[0]) }} 
+                />
+                <Upload className={`w-8 h-8 ${selectedFile ? 'text-govgreen-500' : 'text-slate-300 dark:text-slate-650'} mx-auto mb-2`} />
+                <span className={`text-xs font-bold ${selectedFile ? 'text-govgreen-700' : 'text-slate-600 dark:text-slate-400'} block`}>
+                  {selectedFile ? selectedFile.name : "Click or Drag Certificate here"}
+                </span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 block mt-1">
+                  {selectedFile ? `${(selectedFile.size / 1024 / 1024).toFixed(2)} MB • Ready to upload` : "PDF, JPG, PNG (Max 5MB)"}
+                </span>
               </div>
 
               <div className="pt-2 flex space-x-2">
@@ -673,9 +688,10 @@ const Dashboard = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md cursor-pointer text-center"
+                  disabled={submittingQuery || (!selectedFile && !selectedDocType)}
+                  className="flex-1 py-2 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 rounded-xl shadow-md cursor-pointer text-center"
                 >
-                  Simulate Upload
+                  {submittingQuery ? "Uploading..." : "Upload Document"}
                 </button>
               </div>
             </form>
