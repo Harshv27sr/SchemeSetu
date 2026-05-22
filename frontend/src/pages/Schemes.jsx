@@ -26,23 +26,35 @@ const Schemes = () => {
     // 2. Category / Occupation check
     let categoryMatch = true;
     if (categoryFilter !== 'All') {
+      const allowedOcc = scheme.eligibility?.allowedOccupations || [];
       if (categoryFilter === 'Women') {
-        categoryMatch = scheme.eligibility.allowedGenders.includes('Female');
+        categoryMatch = scheme.eligibility?.allowedGenders?.includes('Female');
       } else if (categoryFilter === 'Pension') {
-        categoryMatch = scheme.title.toLowerCase().includes('pension') || scheme.eligibility.allowedOccupations.includes('Retired');
+        categoryMatch = scheme.title.toLowerCase().includes('pension') || allowedOcc.includes('Retired');
       } else {
-        categoryMatch = scheme.eligibility.allowedOccupations.includes(categoryFilter) || scheme.eligibility.allowedOccupations.includes("All");
+        categoryMatch = allowedOcc.includes(categoryFilter) || allowedOcc.includes("All");
       }
     }
 
     // 3. State check
-    const stateMatch = stateFilter === 'All' || scheme.state === stateFilter || scheme.state === 'Central';
+    // If user picks a specific state (e.g. Rajasthan), they should see Central schemes AND Rajasthan schemes.
+    // If they pick Central, they should see only Central schemes.
+    let stateMatch = true;
+    if (stateFilter !== 'All') {
+      const allowedSt = scheme.eligibility?.allowedStates || [];
+      if (stateFilter === 'Central') {
+        stateMatch = scheme.state === 'Central';
+      } else {
+        stateMatch = scheme.state === stateFilter || scheme.state === 'Central' || allowedSt.includes(stateFilter) || allowedSt.includes('All');
+      }
+    }
 
-    // 4. Social Category check
+    // 4. Social Category (Caste) check
     let casteMatch = true;
     if (casteFilter !== 'All') {
-      casteMatch = scheme.eligibility.allowedCategories.includes(casteFilter) || scheme.eligibility.allowedCategories.includes("All") ||
-        (scheme.eligibility.allowedCategories.includes("SC/ST") && (casteFilter === "SC" || casteFilter === "ST"));
+      const allowedCats = scheme.eligibility?.allowedCategories || [];
+      casteMatch = allowedCats.includes(casteFilter) || allowedCats.includes("All") ||
+        (allowedCats.includes("SC/ST") && (casteFilter === "SC" || casteFilter === "ST"));
     }
 
     return searchMatch && categoryMatch && stateMatch && casteMatch;

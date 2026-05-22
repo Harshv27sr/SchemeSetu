@@ -117,15 +117,33 @@ const Login = () => {
           </div>
         </form>
 
-        {/* Mock accounts instruction drawer */}
-        <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl space-y-2">
+        {/* Quick Login Buttons */}
+        <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl space-y-3">
           <div className="flex items-center space-x-1.5 text-xs font-bold text-govblue-800 dark:text-govblue-400">
             <ShieldCheck className="w-4 h-4 text-govblue-600 dark:text-govblue-450" />
-            <span>Hackathon Quick-Demo Login:</span>
+            <span>Quick Login (Demo Accounts):</span>
           </div>
-          <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal space-y-1">
-            <p>👨‍💼 <strong className="text-slate-700 dark:text-slate-300">Citizen:</strong> Enter any email (e.g. <code className="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-govblue-700 dark:text-govblue-300">rahul@gmail.com</code>) + any password to auto-generate a citizen session.</p>
-            <p>🛠 <strong className="text-slate-700 dark:text-slate-300">Admin Console:</strong> Email <code className="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-govblue-700 dark:text-govblue-300">admin@schemesetu.gov.in</code> + password <code className="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-govblue-700 dark:text-govblue-300">admin123</code>.</p>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('rahul@gmail.com');
+                setPassword('password123');
+              }}
+              className="py-2 text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+            >
+              👨‍💼 Citizen Login
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('admin@schemesetu.gov.in');
+                setPassword('admin123');
+              }}
+              className="py-2 text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+            >
+              🛠 Admin Login
+            </button>
           </div>
         </div>
 

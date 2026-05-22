@@ -136,6 +136,24 @@ const seedDB = async () => {
         disabilityStatus: false
       }
     });
+
+    const citizenUser = await User.create({
+      name: "Rahul Citizen",
+      email: "rahul@gmail.com",
+      password: "password123",
+      role: "Citizen",
+      profile: {
+        fullName: "Rahul Kumar",
+        age: 22,
+        gender: "Male",
+        state: "Rajasthan",
+        category: "SC",
+        occupation: "Student",
+        income: 150000,
+        education: "Graduate",
+        disabilityStatus: false
+      }
+    });
     console.log(`👤 Seeded Default Administrator successfully:`);
     console.log(`   - Email: ${adminUser.email}`);
     console.log(`   - Password: admin123`);
