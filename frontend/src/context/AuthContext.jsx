@@ -674,9 +674,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Document Vault Actions
-  const uploadDocument = async (type, name) => {
+  const uploadDocument = async (type, name, fileData) => {
     try {
-      const res = await axios.post(`${API_URL}/auth/profile/documents`, { type, name });
+      const res = await axios.post(`${API_URL}/auth/profile/documents`, { type, name, fileData });
       setUser(res.data);
       return { success: true };
     } catch (err) {

@@ -141,7 +141,7 @@ export const updateUserProfile = async (req, res) => {
 // @route   POST /api/auth/profile/documents
 // @access  Private
 export const addProfileDocument = async (req, res) => {
-  const { type, name, status } = req.body;
+  const { type, name, status, fileData } = req.body;
 
   if (!type || !name) {
     return res.status(400).json({ message: 'Document type and name are required' });
@@ -152,12 +152,15 @@ export const addProfileDocument = async (req, res) => {
 
     if (user) {
       user.documents = user.documents.filter(doc => doc.type !== type);
-      user.documents.push({
+      const newDoc = {
         type,
         name,
-        url: `/uploads/${name}`,
-        status: status || 'Verified'
-      });
+        url: 'upload-simulated-url',
+        fileData: fileData || '',
+        status: status || 'Verified',
+        uploadedAt: new Date()
+      };
+      user.documents.push(newDoc);
 
       const updatedUser = await user.save();
       const userObj = updatedUser.toObject();

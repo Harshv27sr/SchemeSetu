@@ -37,8 +37,8 @@ app.use(cors({
   },
   credentials: true,
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Ensure uploads/ directory is active and expose as static
 const __dirname = path.resolve();

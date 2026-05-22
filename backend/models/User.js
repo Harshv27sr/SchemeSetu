@@ -47,6 +47,7 @@ const UserSchema = new mongoose.Schema({
     type: { type: String, required: true },
     name: { type: String, required: true },
     url: { type: String, required: true },
+    fileData: { type: String },
     status: { type: String, enum: ['Uploaded', 'Pending Verification', 'Verified'], default: 'Verified' },
     uploadedAt: { type: Date, default: Date.now }
   }]

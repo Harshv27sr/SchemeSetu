@@ -35,18 +35,40 @@ const Dashboard = () => {
 
   const handleUploadSimulate = async (e) => {
     e.preventDefault();
-    if (!selectedDocType) return;
-    setSubmittingQuery(true);
-    const fileName = selectedFile ? selectedFile.name : `certificate_${selectedDocType.toLowerCase().replace(/\s+/g, '_')}_scanned.png`;
-    const res = await uploadDocument(selectedDocType, fileName);
-    setSubmittingQuery(false);
-    if (res.success) {
-      setUploadModalOpen(false);
-      setSelectedDocType('');
-      setSelectedFile(null);
-    } else {
-      alert("Upload failed: " + res.error);
+    if (!selectedDocType || !selectedFile) {
+      alert("Please select a document type and a file.");
+      return;
     }
+    
+    // Check file size (2MB limit)
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    if (selectedFile.size > maxSize) {
+      alert("File is too large! Please select an image/PDF smaller than 2MB.");
+      return;
+    }
+
+    setSubmittingQuery(true);
+    const fileName = selectedFile.name;
+
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const base64String = reader.result;
+      const res = await uploadDocument(selectedDocType, fileName, base64String);
+      setSubmittingQuery(false);
+      
+      if (res.success) {
+        setUploadModalOpen(false);
+        setSelectedDocType('');
+        setSelectedFile(null);
+      } else {
+        alert("Upload failed: " + res.error);
+      }
+    };
+    reader.onerror = () => {
+      setSubmittingQuery(false);
+      alert("Error reading file");
+    };
+    reader.readAsDataURL(selectedFile);
   };
 
   const getStatusColor = (status) => {
@@ -513,6 +535,20 @@ const Dashboard = () => {
                       }`}>
                         {doc.status}
                       </span>
+                      {doc.fileData && (
+                        <button
+                          onClick={() => {
+                            const newWindow = window.open();
+                            if (newWindow) {
+                              newWindow.document.write(`<iframe src="${doc.fileData}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>`);
+                            }
+                          }}
+                          className="p-1 hover:bg-govblue-50 dark:hover:bg-govblue-900/30 text-govblue-500 hover:text-govblue-700 rounded transition-colors cursor-pointer"
+                          title="View Document"
+                        >
+                          👁
+                        </button>
+                      )}
                       <button
                         onClick={() => deleteDocument(doc._id)}
                         className="p-1 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-rose-500 hover:text-rose-700 rounded transition-colors cursor-pointer"
