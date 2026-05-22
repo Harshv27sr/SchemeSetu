@@ -121,8 +121,8 @@ const Navbar = () => {
             {user ? (
               <div className="flex items-center space-x-3 bg-slate-50 border border-slate-100 rounded-2xl p-1.5 pl-3">
                 <div className="flex flex-col items-end">
-                  <span className="text-xs font-bold text-slate-800 leading-tight">{user.name}</span>
-                  <span className="text-[10px] font-bold text-govgreen-600 bg-govgreen-50 px-1.5 py-0.5 rounded-full mt-0.5 uppercase leading-none">
+                  <span className="text-sm font-bold text-slate-800 leading-tight">{user.name}</span>
+                  <span className="text-xs font-bold text-govgreen-600 bg-govgreen-50 px-1.5 py-0.5 rounded-full mt-0.5 uppercase leading-none">
                     {user.role}
                   </span>
                 </div>
@@ -156,7 +156,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center space-x-2">
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-1 p-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-bold transition-all cursor-pointer"
+              className="flex items-center space-x-1 p-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-bold transition-all cursor-pointer"
             >
               <Globe className="w-3.5 h-3.5" />
               <span>{language === 'en' ? 'हिन्दी' : 'English'}</span>
@@ -222,12 +222,12 @@ const Navbar = () => {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-sm font-bold text-slate-800 leading-tight">{user.name}</span>
-                      <span className="text-[10px] text-govgreen-600 font-bold uppercase">{user.role}</span>
+                      <span className="text-xs text-govgreen-600 font-bold uppercase">{user.role}</span>
                     </div>
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="flex items-center space-x-1 px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-bold transition-all cursor-pointer"
+                    className="flex items-center space-x-1 px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg text-sm font-bold transition-all cursor-pointer"
                   >
                     <LogOut className="w-3.5 h-3.5" />
                     <span>{t('logout')}</span>

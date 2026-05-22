@@ -90,7 +90,7 @@ const Dashboard = () => {
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
             Namaste, {user?.name || "Citizen"}!
           </h1>
-          <p className="text-xs md:text-sm text-govblue-100 max-w-xl">
+          <p className="text-sm md:text-sm text-govblue-100 max-w-xl">
             Welcome to your SchemeSetu portal. We've matched your profile parameters against 10+ central and state policies to recommend the highest matching payouts.
           </p>
         </div>
@@ -100,9 +100,9 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-2xl shadow-sm dark:shadow-none flex items-center justify-between">
           <div>
-            <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Perfect Scheme Matches</h3>
+            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Perfect Scheme Matches</h3>
             <p className="text-3xl font-extrabold text-govblue-900 dark:text-white mt-1">{recommended.filter(s => s.eligibilityResult?.score === 100).length} Schemes</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">100% eligibility met</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">100% eligibility met</p>
           </div>
           <div className="w-12 h-12 rounded-xl bg-govblue-50 dark:bg-govblue-900/20 text-govblue-600 dark:text-govblue-450 flex items-center justify-center font-bold text-lg">
             ✓
@@ -111,9 +111,9 @@ const Dashboard = () => {
 
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-2xl shadow-sm dark:shadow-none flex items-center justify-between">
           <div>
-            <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Active Claims</h3>
+            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Active Claims</h3>
             <p className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">{activeApps.length} Submitted</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">In official verification process</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">In official verification process</p>
           </div>
           <div className="w-12 h-12 rounded-xl bg-govgreen-50 dark:bg-govgreen-900/20 text-govgreen-600 dark:text-govgreen-450 flex items-center justify-center font-bold text-lg">
             📝
@@ -122,9 +122,9 @@ const Dashboard = () => {
 
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-2xl shadow-sm dark:shadow-none flex items-center justify-between">
           <div>
-            <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Verified Files</h3>
+            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Verified Files</h3>
             <p className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">{vaultDocs.filter(d => d.status === "Verified").length} Saved</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Stored securely inside MongoDB</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Stored securely inside MongoDB</p>
           </div>
           <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-lg">
             📂
@@ -201,10 +201,10 @@ const Dashboard = () => {
                         <div>
                           {/* Top badge */}
                           <div className="flex justify-between items-center mb-4">
-                            <span className="text-[10px] font-bold text-govblue-600 dark:text-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 px-2.5 py-0.5 rounded-full uppercase">
+                            <span className="text-xs font-bold text-govblue-600 dark:text-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 px-2.5 py-0.5 rounded-full uppercase">
                               {scheme.state === "Central" ? "Central Scheme" : `${scheme.state} State`}
                             </span>
-                            <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
+                            <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
                               el.score === 100 
                                 ? 'bg-govgreen-50 dark:bg-govgreen-950/30 text-govgreen-700 dark:text-govgreen-450' 
                                 : el.score >= 50 
@@ -216,11 +216,11 @@ const Dashboard = () => {
                           </div>
 
                           <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 leading-tight mb-2 line-clamp-1">{scheme.title}</h3>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-4">{scheme.description}</p>
+                          <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-4">{scheme.description}</p>
 
                           {/* Matching scorecard progress */}
                           <div className="space-y-1.5 mb-4">
-                            <div className="flex justify-between text-[10px] font-semibold text-slate-400 dark:text-slate-500">
+                            <div className="flex justify-between text-xs font-semibold text-slate-400 dark:text-slate-500">
                               <span>Match Score</span>
                               <span>{el.score}% Eligibility</span>
                             </div>
@@ -237,12 +237,12 @@ const Dashboard = () => {
 
                         {/* Apply card CTA */}
                         <div className="border-t border-slate-100 dark:border-white/5 pt-4 flex items-center justify-between">
-                          <div className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
+                          <div className="text-xs text-slate-400 dark:text-slate-500 font-medium">
                             Deadline: {new Date(scheme.deadline).toLocaleDateString()}
                           </div>
                           <Link
                             to={`/schemes/${scheme._id}`}
-                            className="px-4.5 py-2 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center cursor-pointer"
+                            className="px-4.5 py-2 text-sm font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center cursor-pointer"
                           >
                             <span>Check & Apply</span>
                             <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
@@ -262,7 +262,7 @@ const Dashboard = () => {
               {activeApps.length === 0 ? (
                 <div className="p-8 bg-slate-50 dark:bg-slate-900/50 border border-slate-200/50 dark:border-white/5 rounded-3xl text-center text-slate-500 dark:text-slate-400">
                   <p className="text-sm font-medium">{t('noApplications')}</p>
-                  <Link to="/schemes" className="text-xs text-govblue-600 dark:text-govblue-400 font-bold hover:underline mt-2 inline-block">
+                  <Link to="/schemes" className="text-sm text-govblue-600 dark:text-govblue-400 font-bold hover:underline mt-2 inline-block">
                     Explore active schemas catalog and submit your first claim &rarr;
                   </Link>
                 </div>
@@ -276,10 +276,10 @@ const Dashboard = () => {
                       {/* App header bar */}
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-slate-100 dark:border-white/5 gap-2">
                         <div>
-                          <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">Application Reference #{app._id.substring(app._id.length - 8)}</span>
+                          <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Application Reference #{app._id.substring(app._id.length - 8)}</span>
                           <h3 className="text-base font-extrabold text-slate-800 dark:text-slate-200 mt-0.5">{app.scheme?.title || "Indian Government Scheme"}</h3>
                         </div>
-                        <span className={`px-3 py-1 text-xs font-bold rounded-xl border uppercase tracking-wider ${getStatusColor(app.status)}`}>
+                        <span className={`px-3 py-1 text-sm font-bold rounded-xl border uppercase tracking-wider ${getStatusColor(app.status)}`}>
                           {app.status}
                         </span>
                       </div>
@@ -290,49 +290,49 @@ const Dashboard = () => {
                           app.validationResult.status === "Success" 
                             ? 'bg-govgreen-50 dark:bg-govgreen-950/20 border-govgreen-100 dark:border-govgreen-900/30 text-govgreen-800 dark:text-govgreen-400' 
                             : 'bg-rose-50 dark:bg-rose-950/20 border-rose-100 dark:border-rose-900/30 text-rose-800 dark:text-rose-455'
-                        } text-xs font-semibold flex items-start space-x-2`}>
+                        } text-sm font-semibold flex items-start space-x-2`}>
                           <span className="text-sm">{app.validationResult.status === "Success" ? "✅" : "⚠"}</span>
                           <div>
                             <p className="font-bold">{app.validationResult.status === "Success" ? "OCR Validation Verified" : "OCR Verification Mismatch Notice"}</p>
-                            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 font-medium leading-relaxed">{app.validationResult.remarks}</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-medium leading-relaxed">{app.validationResult.remarks}</p>
                           </div>
                         </div>
                       )}
 
                       {/* Real-time application flow timeline tracker */}
                       <div className="space-y-4">
-                        <h4 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Claim Processing Timeline</h4>
+                        <h4 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Claim Processing Timeline</h4>
                         <div className="relative pl-6 space-y-6 border-l-2 border-slate-100 dark:border-white/5">
                           {/* Stage 1 */}
                           <div className="relative">
-                            <span className="absolute -left-9.5 top-0.5 w-6 h-6 rounded-full bg-govgreen-100 dark:bg-govgreen-950/30 text-govgreen-600 dark:text-govgreen-400 flex items-center justify-center font-bold text-xs">✓</span>
-                            <div className="flex justify-between text-xs">
+                            <span className="absolute -left-9.5 top-0.5 w-6 h-6 rounded-full bg-govgreen-100 dark:bg-govgreen-950/30 text-govgreen-600 dark:text-govgreen-400 flex items-center justify-center font-bold text-sm">✓</span>
+                            <div className="flex justify-between text-sm">
                               <span className="font-bold text-slate-800 dark:text-slate-200">Application Submitted</span>
-                              <span className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold">{new Date(app.submittedAt).toLocaleDateString()}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">{new Date(app.submittedAt).toLocaleDateString()}</span>
                             </div>
-                            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Files uploaded successfully to official secure vault.</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Files uploaded successfully to official secure vault.</p>
                           </div>
 
                           {/* Stage 2 */}
                           <div className="relative">
-                            <span className={`absolute -left-9.5 top-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${
+                            <span className={`absolute -left-9.5 top-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm ${
                               ['Under Review', 'Verified', 'Approved', 'Rejected'].includes(app.status)
                                 ? 'bg-govgreen-100 dark:bg-govgreen-950/30 text-govgreen-600 dark:text-govgreen-400'
                                 : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 animate-pulse'
                             }`}>
                               {['Under Review', 'Verified', 'Approved', 'Rejected'].includes(app.status) ? '✓' : '2'}
                             </span>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-sm">
                               <span className={`font-bold ${['Under Review', 'Verified', 'Approved', 'Rejected'].includes(app.status) ? 'text-slate-800 dark:text-slate-200' : 'text-slate-400 dark:text-slate-500'}`}>
                                 OCR & Schema Verified
                               </span>
                             </div>
-                            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Auto validation comparing parameters against criteria completed.</p>
+                            <p className="text-sm text-slate-400 dark:text-slate-500 mt-0.5">Auto validation comparing parameters against criteria completed.</p>
                           </div>
 
                           {/* Stage 3 */}
                           <div className="relative">
-                            <span className={`absolute -left-9.5 top-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${
+                            <span className={`absolute -left-9.5 top-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm ${
                               ['Verified', 'Approved', 'Rejected'].includes(app.status)
                                 ? 'bg-govgreen-100 dark:bg-govgreen-950/30 text-govgreen-600 dark:text-govgreen-400'
                                 : app.status === 'Under Review'
@@ -341,17 +341,17 @@ const Dashboard = () => {
                             }`}>
                               {['Verified', 'Approved', 'Rejected'].includes(app.status) ? '✓' : '3'}
                             </span>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-sm">
                               <span className={`font-bold ${['Under Review', 'Verified', 'Approved', 'Rejected'].includes(app.status) ? 'text-slate-800 dark:text-slate-200' : 'text-slate-400 dark:text-slate-500'}`}>
                                 Under Official Desk Review
                               </span>
                             </div>
-                            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">District Officer verifying Caste and Income details.</p>
+                            <p className="text-sm text-slate-400 dark:text-slate-500 mt-0.5">District Officer verifying Caste and Income details.</p>
                           </div>
 
                           {/* Stage 4 */}
                           <div className="relative">
-                            <span className={`absolute -left-9.5 top-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${
+                            <span className={`absolute -left-9.5 top-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm ${
                               app.status === 'Approved'
                                 ? 'bg-govgreen-600 text-white'
                                 : app.status === 'Rejected'
@@ -360,16 +360,16 @@ const Dashboard = () => {
                             }`}>
                               {app.status === 'Approved' ? '✓' : app.status === 'Rejected' ? '✗' : '4'}
                             </span>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-sm">
                               <span className={`font-bold ${['Approved', 'Rejected'].includes(app.status) ? 'text-slate-800 dark:text-slate-200' : 'text-slate-400 dark:text-slate-500'}`}>
                                 Payout Disbursement
                               </span>
                             </div>
-                            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Sanction letter issuance and direct bank benefit release.</p>
+                            <p className="text-sm text-slate-400 dark:text-slate-500 mt-0.5">Sanction letter issuance and direct bank benefit release.</p>
                             {app.status === 'Approved' && (
                               <button
                                 onClick={() => setCertificateApp(app)}
-                                className="mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-govgreen-50 dark:bg-govgreen-950/30 hover:bg-govgreen-100 dark:hover:bg-govgreen-900/40 text-govgreen-700 dark:text-govgreen-450 text-[11px] font-bold rounded-xl border border-govgreen-200 dark:border-govgreen-900/30 transition-all cursor-pointer"
+                                className="mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-govgreen-50 dark:bg-govgreen-950/30 hover:bg-govgreen-100 dark:hover:bg-govgreen-900/40 text-govgreen-700 dark:text-govgreen-450 text-sm font-bold rounded-xl border border-govgreen-200 dark:border-govgreen-900/30 transition-all cursor-pointer"
                               >
                                 📄 View Official Sanction Letter
                               </button>
@@ -397,7 +397,7 @@ const Dashboard = () => {
                       </div>
                       <div>
                         <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">Aadhaar Payment Bridge System (APBS)</h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
                           Your payouts are processed using the Aadhaar Payment Bridge System (APBS) in compliance with the National Payments Corporation of India (NPCI). Once an administrative desk officer approves your application, benefits will be credited directly to your Aadhaar-linked active bank account.
                         </p>
                       </div>
@@ -406,7 +406,7 @@ const Dashboard = () => {
 
                   <div className="p-8 bg-slate-50 dark:bg-slate-900/50 border border-slate-200/50 dark:border-white/5 rounded-3xl text-center text-slate-500 dark:text-slate-400">
                     <p className="text-sm font-medium">No active DBT payouts found.</p>
-                    <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+                    <p className="text-sm text-slate-400 mt-1 max-w-sm mx-auto">
                       Direct benefits will appear here automatically once your application has successfully passed the officer review and changed status to "Approved".
                     </p>
                   </div>
@@ -416,8 +416,8 @@ const Dashboard = () => {
                   <div className="p-4 bg-govgreen-50 dark:bg-govgreen-950/20 border border-govgreen-100 dark:border-govgreen-900/30 rounded-2xl flex items-center space-x-3">
                     <span className="text-lg">💰</span>
                     <div>
-                      <h4 className="text-xs font-bold text-govgreen-800 dark:text-govgreen-400">Active Direct Benefit Transfer (DBT) Payouts</h4>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Funds are disbursed directly via NPCI bridge routing to your Aadhaar-linked accounts.</p>
+                      <h4 className="text-sm font-bold text-govgreen-800 dark:text-govgreen-400">Active Direct Benefit Transfer (DBT) Payouts</h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Funds are disbursed directly via NPCI bridge routing to your Aadhaar-linked accounts.</p>
                     </div>
                   </div>
 
@@ -440,29 +440,29 @@ const Dashboard = () => {
                       <div key={app._id} className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-4">
                         <div className="flex justify-between items-start">
                           <div>
-                            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">TRANSACTION SECURE LEDGER</span>
+                            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">TRANSACTION SECURE LEDGER</span>
                             <h3 className="text-sm font-extrabold text-slate-800 dark:text-slate-200 mt-0.5">{app.scheme?.title}</h3>
                           </div>
-                          <span className="px-2.5 py-0.5 text-[10px] font-bold bg-govgreen-100 dark:bg-govgreen-950/30 text-govgreen-755 dark:text-govgreen-455 border border-govgreen-200 dark:border-govgreen-900/30 rounded-full uppercase tracking-wider">
+                          <span className="px-2.5 py-0.5 text-xs font-bold bg-govgreen-100 dark:bg-govgreen-950/30 text-govgreen-755 dark:text-govgreen-455 border border-govgreen-200 dark:border-govgreen-900/30 rounded-full uppercase tracking-wider">
                             Disbursed
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 py-3 border-t border-b border-slate-100 dark:border-white/5 text-xs">
+                        <div className="grid grid-cols-2 gap-4 py-3 border-t border-b border-slate-100 dark:border-white/5 text-sm">
                           <div>
-                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-[9px]">Sanctioned Payout</p>
+                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-xs">Sanctioned Payout</p>
                             <p className="font-extrabold text-govgreen-700 dark:text-govgreen-455 mt-0.5 text-sm">{payoutAmount}</p>
                           </div>
                           <div>
-                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-[9px]">Linked Bank Bridge</p>
+                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-xs">Linked Bank Bridge</p>
                             <p className="font-bold text-slate-700 dark:text-slate-300 mt-0.5">State Bank of India (*******3928)</p>
                           </div>
                           <div>
-                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-[9px]">APBS Reference Ref</p>
-                            <p className="font-mono text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">{txId}</p>
+                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-xs">APBS Reference Ref</p>
+                            <p className="font-mono text-xs text-slate-600 dark:text-slate-400 mt-0.5">{txId}</p>
                           </div>
                           <div>
-                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-[9px]">Disbursal Timestamp</p>
+                            <p className="text-slate-400 dark:text-slate-500 font-semibold uppercase text-xs">Disbursal Timestamp</p>
                             <p className="font-bold text-slate-700 dark:text-slate-350 mt-0.5">{new Date(app.submittedAt).toLocaleDateString()}</p>
                           </div>
                         </div>
@@ -470,7 +470,7 @@ const Dashboard = () => {
                         <div className="flex space-x-2.5 pt-1">
                           <button
                             onClick={() => setCertificateApp(app)}
-                            className="flex-1 py-2 text-xs font-bold text-govgreen-700 dark:text-govgreen-450 bg-govgreen-50 dark:bg-govgreen-950/30 hover:bg-govgreen-100 dark:hover:bg-govgreen-900/40 border border-govgreen-200 dark:border-govgreen-900/30 rounded-xl cursor-pointer transition-all text-center"
+                            className="flex-1 py-2 text-sm font-bold text-govgreen-700 dark:text-govgreen-450 bg-govgreen-50 dark:bg-govgreen-950/30 hover:bg-govgreen-100 dark:hover:bg-govgreen-900/40 border border-govgreen-200 dark:border-govgreen-900/30 rounded-xl cursor-pointer transition-all text-center"
                           >
                             📄 View Sanction Order
                           </button>
@@ -479,7 +479,7 @@ const Dashboard = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => { e.preventDefault(); alert(`Redirecting to Secure NPCI Direct Benefit Transfer portal for Reference: ${txId}. Gateway response: SUCCESS.`); }}
-                            className="flex-1 py-2 text-xs font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-all text-center"
+                            className="flex-1 py-2 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-all text-center"
                           >
                             🔗 Track on PFMS Portal
                           </a>
@@ -502,7 +502,7 @@ const Dashboard = () => {
               <h3 className="text-base font-extrabold text-slate-800 dark:text-white">{t('uploadedDocumentsTitle')}</h3>
               <button
                 onClick={() => setUploadModalOpen(true)}
-                className="p-1.5 bg-govblue-50 dark:bg-govblue-900/20 text-govblue-600 dark:text-govblue-400 hover:bg-govblue-100 dark:hover:bg-govblue-900/40 rounded-lg text-xs font-bold flex items-center space-x-1 cursor-pointer transition-all"
+                className="p-1.5 bg-govblue-50 dark:bg-govblue-900/20 text-govblue-600 dark:text-govblue-400 hover:bg-govblue-100 dark:hover:bg-govblue-900/40 rounded-lg text-sm font-bold flex items-center space-x-1 cursor-pointer transition-all"
               >
                 <Upload className="w-3.5 h-3.5" />
                 <span>Upload</span>
@@ -511,7 +511,7 @@ const Dashboard = () => {
 
             <div className="space-y-3.5">
               {user?.documents?.length === 0 ? (
-                <p className="text-xs text-slate-400 dark:text-slate-500 text-center py-4">No documents uploaded yet. Upload certificates to verify eligibility.</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500 text-center py-4">No documents uploaded yet. Upload certificates to verify eligibility.</p>
               ) : (
                 user?.documents?.map((doc, idx) => (
                   <div 
@@ -523,12 +523,12 @@ const Dashboard = () => {
                         📁
                       </div>
                       <div className="truncate">
-                        <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight truncate" title={doc.type}>{doc.type}</h4>
-                        <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5 font-medium truncate" title={doc.name}>{doc.name}</p>
+                        <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight truncate" title={doc.type}>{doc.type}</h4>
+                        <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 font-medium truncate" title={doc.name}>{doc.name}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2 shrink-0">
-                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
                         doc.status === 'Verified' 
                           ? 'bg-govgreen-50 dark:bg-govgreen-950/30 text-govgreen-600 dark:text-govgreen-450' 
                           : 'bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-450'
@@ -570,13 +570,13 @@ const Dashboard = () => {
               <span>{t('deadlineReminder')}</span>
             </h3>
 
-            <div className="space-y-3 text-xs">
+            <div className="space-y-3 text-sm">
               <div className="p-3 bg-rose-50/50 dark:bg-rose-950/20 border border-rose-100/50 dark:border-rose-900/30 rounded-xl flex justify-between items-center animate-none">
                 <div>
                   <h4 className="font-bold text-slate-800 dark:text-slate-200">Post Matric Scholarship</h4>
-                  <p className="text-[10px] text-rose-600 dark:text-rose-400 font-semibold mt-0.5">Closes July 31, 2026</p>
+                  <p className="text-xs text-rose-600 dark:text-rose-400 font-semibold mt-0.5">Closes July 31, 2026</p>
                 </div>
-                <span className="text-[10px] font-extrabold text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/30 px-2 py-0.5 rounded-full shrink-0">
+                <span className="text-xs font-extrabold text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/30 px-2 py-0.5 rounded-full shrink-0">
                   Closing Soon
                 </span>
               </div>
@@ -584,9 +584,9 @@ const Dashboard = () => {
               <div className="p-3 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-100/50 dark:border-amber-900/30 rounded-xl flex justify-between items-center">
                 <div>
                   <h4 className="font-bold text-slate-800 dark:text-slate-200">PM Kisan Payouts</h4>
-                  <p className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold mt-0.5">Closes Aug 15, 2026</p>
+                  <p className="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-0.5">Closes Aug 15, 2026</p>
                 </div>
-                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/30 px-2 py-0.5 rounded-full shrink-0">
+                <span className="text-xs font-extrabold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/30 px-2 py-0.5 rounded-full shrink-0">
                   2 Months Left
                 </span>
               </div>
@@ -598,7 +598,7 @@ const Dashboard = () => {
             <h3 className="text-base font-extrabold text-slate-800 dark:text-white flex items-center space-x-2">
               <span>🎧 Helpdesk & Grievance desk</span>
             </h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-normal">
               Have doubts about documents or eligibility rules? Raise a ticket below. Our simulated regional desk officer will review it.
             </p>
 
@@ -609,12 +609,12 @@ const Dashboard = () => {
                 value={ticketQuery}
                 onChange={(e) => setTicketQuery(e.target.value)}
                 placeholder="Ask a question about scheme documents or status..."
-                className="w-full px-3 py-2 text-xs border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-govblue-500 placeholder-slate-400 dark:placeholder-slate-600 resize-none"
+                className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-govblue-500 placeholder-slate-400 dark:placeholder-slate-600 resize-none"
               ></textarea>
               <button
                 type="submit"
                 disabled={submittingQuery}
-                className="w-full py-2 bg-govblue-600 hover:bg-govblue-700 disabled:bg-slate-300 dark:disabled:bg-slate-800 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-all flex items-center justify-center space-x-1"
+                className="w-full py-2 bg-govblue-600 hover:bg-govblue-700 disabled:bg-slate-300 dark:disabled:bg-slate-800 text-white font-bold text-sm rounded-xl shadow-md cursor-pointer transition-all flex items-center justify-center space-x-1"
               >
                 <span>{submittingQuery ? "Filing Ticket..." : "⚡ Raise Support Query"}</span>
               </button>
@@ -622,13 +622,13 @@ const Dashboard = () => {
 
             <div className="border-t border-slate-100 dark:border-white/5 pt-3.5 space-y-3 max-h-56 overflow-y-auto pr-1">
               {tickets.length === 0 ? (
-                <p className="text-xs text-slate-400 dark:text-slate-500 text-center py-4">No support queries filed yet.</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500 text-center py-4">No support queries filed yet.</p>
               ) : (
                 tickets.map((t) => (
                   <div key={t._id} className="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-xl space-y-2">
-                    <div className="flex justify-between items-center text-[10px]">
+                    <div className="flex justify-between items-center text-xs">
                       <span className="font-mono text-slate-400 font-bold">{t.ticketId}</span>
-                      <span className={`px-2 py-0.5 rounded-full font-extrabold uppercase tracking-wider text-[9px] ${
+                      <span className={`px-2 py-0.5 rounded-full font-extrabold uppercase tracking-wider text-xs ${
                         t.status === 'Resolved'
                           ? 'bg-govgreen-50 dark:bg-govgreen-950/20 text-govgreen-600 dark:text-govgreen-450'
                           : t.status === 'Officer Responded'
@@ -638,16 +638,16 @@ const Dashboard = () => {
                         {t.status}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-700 dark:text-slate-350 font-bold leading-snug">{t.query}</p>
+                    <p className="text-sm text-slate-700 dark:text-slate-350 font-bold leading-snug">{t.query}</p>
                     {t.reply && (
                       <div className="pl-2 border-l-2 border-indigo-400 dark:border-indigo-650 bg-indigo-50/20 dark:bg-indigo-950/10 p-2 rounded-r-lg space-y-1">
-                        <p className="text-[9px] text-indigo-600 dark:text-indigo-455 font-extrabold flex items-center space-x-1">
+                        <p className="text-xs text-indigo-600 dark:text-indigo-455 font-extrabold flex items-center space-x-1">
                           <span>👮 Desk Officer Reply:</span>
                         </p>
-                        <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-normal">{t.reply}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal">{t.reply}</p>
                       </div>
                     )}
-                    <p className="text-[9px] text-slate-400 dark:text-slate-500 text-right">{new Date(t.createdAt || t.date).toLocaleDateString()}</p>
+                    <p className="text-xs text-slate-400 dark:text-slate-500 text-right">{new Date(t.createdAt || t.date).toLocaleDateString()}</p>
                   </div>
                 ))
               )}
@@ -672,18 +672,18 @@ const Dashboard = () => {
             </button>
 
             <h3 className="text-lg font-extrabold text-slate-800 dark:text-white">Upload to Document Vault</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-normal">
               Upload credentials in PDF, JPG, or PNG formats. Files will be parsed securely for validation.
             </p>
 
             <form onSubmit={handleUploadSimulate} className="space-y-4 pt-2">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-700 dark:text-slate-350">Select Document Type</label>
+                <label className="text-sm font-bold text-slate-700 dark:text-slate-350">Select Document Type</label>
                 <select
                   required
                   value={selectedDocType}
                   onChange={(e) => setSelectedDocType(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-800 dark:text-white rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-govblue-500 focus:border-transparent cursor-pointer"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-800 dark:text-white rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-govblue-500 focus:border-transparent cursor-pointer"
                 >
                   <option value="">-- Choose Type --</option>
                   <option value="Aadhaar Card">Aadhaar Card</option>
@@ -706,10 +706,10 @@ const Dashboard = () => {
                   onChange={(e) => { if(e.target.files[0]) setSelectedFile(e.target.files[0]) }} 
                 />
                 <Upload className={`w-8 h-8 ${selectedFile ? 'text-govgreen-500' : 'text-slate-300 dark:text-slate-650'} mx-auto mb-2`} />
-                <span className={`text-xs font-bold ${selectedFile ? 'text-govgreen-700' : 'text-slate-600 dark:text-slate-400'} block`}>
+                <span className={`text-sm font-bold ${selectedFile ? 'text-govgreen-700' : 'text-slate-600 dark:text-slate-400'} block`}>
                   {selectedFile ? selectedFile.name : "Click or Drag Certificate here"}
                 </span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 block mt-1">
+                <span className="text-xs text-slate-400 dark:text-slate-500 block mt-1">
                   {selectedFile ? `${(selectedFile.size / 1024 / 1024).toFixed(2)} MB • Ready to upload` : "PDF, JPG, PNG (Max 5MB)"}
                 </span>
               </div>
@@ -718,14 +718,14 @@ const Dashboard = () => {
                 <button
                   type="button"
                   onClick={() => setUploadModalOpen(false)}
-                  className="flex-1 py-2 text-xs font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer text-center"
+                  className="flex-1 py-2 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submittingQuery || (!selectedFile && !selectedDocType)}
-                  className="flex-1 py-2 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 rounded-xl shadow-md cursor-pointer text-center"
+                  className="flex-1 py-2 text-sm font-bold text-white bg-govblue-600 hover:bg-govblue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 rounded-xl shadow-md cursor-pointer text-center"
                 >
                   {submittingQuery ? "Uploading..." : "Upload Document"}
                 </button>
@@ -762,12 +762,12 @@ const Dashboard = () => {
                 </div>
                 
                 <h2 className="text-base font-extrabold tracking-widest text-slate-900 dark:text-white uppercase">GOVERNMENT OF INDIA</h2>
-                <h3 className="text-xs font-bold text-slate-500 dark:text-slate-455 uppercase tracking-wider">Department of Welfare & Direct Benefit Transfer</h3>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">Reference Code: SANCTION-ORD-{certificateApp._id.substring(certificateApp._id.length - 8).toUpperCase()}-2026</p>
+                <h3 className="text-sm font-bold text-slate-500 dark:text-slate-455 uppercase tracking-wider">Department of Welfare & Direct Benefit Transfer</h3>
+                <p className="text-xs text-slate-400 dark:text-slate-500 font-mono">Reference Code: SANCTION-ORD-{certificateApp._id.substring(certificateApp._id.length - 8).toUpperCase()}-2026</p>
               </div>
 
               {/* Sanction Statement */}
-              <div className="space-y-4 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed text-justify">
+              <div className="space-y-4 text-sm md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed text-justify">
                 <p>
                   This is to officially certify and record that the claim application submitted by Citizen <strong>{user?.profile?.fullName || user?.name || "Beneficiary"}</strong> has successfully matched all eligibility criteria and passed rigorous multi-level administrative checks.
                 </p>
@@ -777,7 +777,7 @@ const Dashboard = () => {
               </div>
 
               {/* Beneficiary Parameters Table */}
-              <div className="border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden text-xs">
+              <div className="border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden text-sm">
                 <div className="bg-slate-50 dark:bg-slate-950 px-4 py-2 border-b border-slate-200 dark:border-white/10 flex justify-between font-bold text-slate-900 dark:text-white">
                   <span>PARAMETER</span>
                   <span>RECORDED CREDENTIALS</span>
@@ -821,7 +821,7 @@ const Dashboard = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-[9px] font-mono text-slate-400 dark:text-slate-500 text-center uppercase tracking-widest">NPCI-SECURE-2026</p>
+                  <p className="text-xs font-mono text-slate-400 dark:text-slate-500 text-center uppercase tracking-widest">NPCI-SECURE-2026</p>
                 </div>
 
                 {/* Digital Stamp Seal */}
@@ -832,7 +832,7 @@ const Dashboard = () => {
                     <span>2026-05-22</span>
                   </div>
                   
-                  <div className="text-right text-[10px]">
+                  <div className="text-right text-xs">
                     <p className="font-bold text-slate-800 dark:text-slate-200">Signature Not Required</p>
                     <p className="text-slate-400 dark:text-slate-500 mt-0.5 leading-tight">This is an officially generated, digitally encrypted certificate under DBT APBS guidelines.</p>
                   </div>
@@ -844,7 +844,7 @@ const Dashboard = () => {
             <div className="pt-2 flex space-x-3.5 print:hidden">
               <button
                 onClick={() => setCertificateApp(null)}
-                className="flex-1 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-all text-center"
+                className="flex-1 py-2.5 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-all text-center"
               >
                 Close Certificate
               </button>
@@ -852,7 +852,7 @@ const Dashboard = () => {
                 onClick={() => {
                   window.print();
                 }}
-                className="flex-1 py-2.5 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md hover:shadow-lg cursor-pointer transition-all text-center"
+                className="flex-1 py-2.5 text-sm font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md hover:shadow-lg cursor-pointer transition-all text-center"
               >
                 🖨 Print Sanction Order
               </button>

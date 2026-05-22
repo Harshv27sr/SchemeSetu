@@ -27,10 +27,10 @@ const Home = () => {
   return (
     <div className="bg-[#e8edf2] dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-slate-50 to-[#e8edf2]/30 dark:bg-slate-950 border-b border-slate-200/50 dark:border-white/5">
+      <section className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-slate-50 to-[#e8edf2]/30 dark:from-slate-900 dark:to-slate-950 border-b border-slate-200/50 dark:border-white/5">
         {/* Soft background glow circles */}
-        <div className="absolute top-1/4 left-1/10 w-72 h-72 bg-govblue-100/40 dark:bg-govblue-900/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-govgreen-100/30 dark:bg-govgreen-950/10 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
+        <div className="absolute top-1/4 left-1/10 w-72 h-72 bg-govblue-100/40 dark:bg-govblue-600/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-govgreen-100/30 dark:bg-govgreen-600/15 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -41,10 +41,7 @@ const Home = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center space-x-2 px-3 py-1 bg-govblue-50 dark:bg-govblue-900/20 border border-govblue-200/50 dark:border-govblue-500/20 rounded-full text-govblue-700 dark:text-govblue-400 font-bold text-xs uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-govblue-600 animate-ping"></span>
-                <span>Bridging Digital Access Gap</span>
-              </div>
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                 Find Government Schemes <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-govblue-600 to-govblue-800 dark:from-govblue-400 dark:to-govblue-600">Tailored For You</span>
@@ -86,7 +83,7 @@ const Home = () => {
                     <div className="w-3.5 h-3.5 bg-amber-500 rounded-full"></div>
                     <div className="w-3.5 h-3.5 bg-govgreen-500 rounded-full"></div>
                   </div>
-                  <span className="text-xs font-bold text-slate-400 dark:text-slate-400">SchemeSetu Digital Analyzer</span>
+                  <span className="text-sm font-bold text-slate-400 dark:text-slate-400">SchemeSetu Digital Analyzer</span>
                 </div>
 
                 <div className="mt-4 space-y-4">
@@ -96,10 +93,10 @@ const Home = () => {
                       <Search className="w-5 h-5" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200">Engine Matching...</h4>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Student + Farmer Family → Match!</p>
+                      <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">Engine Matching...</h4>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">Student + Farmer Family → Match!</p>
                     </div>
-                    <span className="text-xs font-bold text-govgreen-600 dark:text-govgreen-450 bg-govgreen-50 dark:bg-govgreen-950/40 px-2.5 py-0.5 rounded-full">98% Match</span>
+                    <span className="text-sm font-bold text-govgreen-600 dark:text-govgreen-450 bg-govgreen-50 dark:bg-govgreen-950/40 px-2.5 py-0.5 rounded-full">98% Match</span>
                   </div>
 
                   {/* OCR mismatch detector item */}
@@ -108,19 +105,19 @@ const Home = () => {
                       <ShieldCheck className="w-5 h-5" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200">OCR Validation Scan</h4>
-                      <p className="text-[10px] text-rose-600 dark:text-rose-400 font-medium">Aadhaar (Rahul) ≠ Income (Rahul S.)</p>
+                      <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">OCR Validation Scan</h4>
+                      <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">Aadhaar (Rahul) ≠ Income (Rahul S.)</p>
                     </div>
-                    <span className="text-[10px] font-bold text-rose-700 dark:text-rose-450 bg-rose-100/60 dark:bg-rose-950/30 px-2 py-0.5 rounded-full">Mismatch</span>
+                    <span className="text-xs font-bold text-rose-700 dark:text-rose-450 bg-rose-100/60 dark:bg-rose-950/30 px-2 py-0.5 rounded-full">Mismatch</span>
                   </div>
 
                   {/* Dynamic tracking panel */}
                   <div className="p-3 bg-slate-50 dark:bg-slate-950/80 border border-slate-200/50 dark:border-white/10 rounded-2xl">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs font-bold text-slate-800 dark:text-slate-200">Application Tracking</span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400">Updated 2m ago</span>
+                      <span className="text-sm font-bold text-slate-800 dark:text-slate-200">Application Tracking</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">Updated 2m ago</span>
                     </div>
-                    <div className="flex items-center space-x-1.5 text-xs text-slate-600 dark:text-slate-300 mt-1">
+                    <div className="flex items-center space-x-1.5 text-sm text-slate-600 dark:text-slate-300 mt-1">
                       <CheckCircle2 className="w-3.5 h-3.5 text-govgreen-500" />
                       <span>Submitted</span>
                       <ChevronRight className="w-2.5 h-2.5 text-slate-300 dark:text-slate-600" />
@@ -138,8 +135,8 @@ const Home = () => {
                       <Bot className="w-5 h-5 text-govgreen-200" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200">सेतु दूत / Setu Doot Assistant</h4>
-                      <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium">Bilingual Interactive Scheme Guide Assistant active!</p>
+                      <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">सेतु दूत / Setu Doot Assistant</h4>
+                      <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium">Bilingual Interactive Scheme Guide Assistant active!</p>
                     </div>
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></span>
                   </div>
@@ -151,10 +148,12 @@ const Home = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 lg:py-28 bg-transparent dark:bg-slate-950/40 transition-colors">
+      <section className="py-20 lg:py-28 relative bg-transparent dark:bg-slate-900 transition-colors">
+        {/* Subtle grid pattern overlay for dark mode */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMjBoMjBWMEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ0iTTAgMTkuNWgyMHYxaC0yMHptMTkuNSAwdjFoLTF2LTF6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9zdmc+')] dark:opacity-100 opacity-0 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 className="text-xs font-bold text-govblue-600 dark:text-govblue-400 tracking-widest uppercase">{t('coreCapabilities')}</h2>
+            <h2 className="text-sm font-bold text-govblue-600 dark:text-govblue-400 tracking-widest uppercase">{t('coreCapabilities')}</h2>
             <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
               {t('powerfulFeatures')}
             </p>
@@ -218,10 +217,12 @@ const Home = () => {
       </section>
 
       {/* How it Works / Steps Section */}
-      <section className="py-20 lg:py-28 bg-slate-50/60 dark:bg-slate-900/30 border-y border-slate-200/60 dark:border-white/5 transition-colors">
+      <section className="py-20 lg:py-28 bg-slate-50/60 dark:bg-[#0b1120] border-y border-slate-200/60 dark:border-white/5 transition-colors relative overflow-hidden">
+        {/* Subtle background glow for flow section */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-3xl bg-govblue-500/5 dark:bg-govblue-500/10 rounded-full blur-3xl -z-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-20 space-y-3">
-            <h2 className="text-xs font-bold text-govgreen-600 dark:text-govgreen-400 tracking-widest uppercase">{t('simplifyingBureaucracy')}</h2>
+            <h2 className="text-sm font-bold text-govgreen-600 dark:text-govgreen-400 tracking-widest uppercase">{t('simplifyingBureaucracy')}</h2>
             <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
               {t('fiveStepFlow')}
             </p>
@@ -238,7 +239,7 @@ const Home = () => {
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step1Title')}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step1Desc')}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{t('step1Desc')}</p>
             </div>
 
             {/* Step 2 */}
@@ -248,7 +249,7 @@ const Home = () => {
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step2Title')}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step2Desc')}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{t('step2Desc')}</p>
             </div>
 
             {/* Step 3 */}
@@ -258,7 +259,7 @@ const Home = () => {
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step3Title')}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step3Desc')}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{t('step3Desc')}</p>
             </div>
 
             {/* Step 4 */}
@@ -268,7 +269,7 @@ const Home = () => {
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step4Title')}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step4Desc')}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{t('step4Desc')}</p>
             </div>
 
             {/* Step 5 */}
@@ -277,7 +278,7 @@ const Home = () => {
                 5
               </div>
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step5Title')}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step5Desc')}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{t('step5Desc')}</p>
             </div>
           </div>
         </div>
@@ -304,11 +305,11 @@ const Home = () => {
             {/* PM-Kisan */}
             <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 p-6 rounded-2xl shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-bold text-govgreen-700 dark:text-govgreen-440 bg-govgreen-50 dark:bg-govgreen-950/40 px-2 py-0.5 rounded-full uppercase">Agriculture</span>
+                <span className="text-xs font-bold text-govgreen-700 dark:text-govgreen-440 bg-govgreen-50 dark:bg-govgreen-950/40 px-2 py-0.5 rounded-full uppercase">Agriculture</span>
                 <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mt-2 mb-1">PM Kisan Samman Nidhi</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">₹6,000 yearly income support paid in three equal installments directly into farmer bank accounts.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">₹6,000 yearly income support paid in three equal installments directly into farmer bank accounts.</p>
               </div>
-              <div className="border-t border-slate-100 dark:border-white/10 mt-4 pt-4 flex justify-between items-center text-xs animate-none">
+              <div className="border-t border-slate-100 dark:border-white/10 mt-4 pt-4 flex justify-between items-center text-sm animate-none">
                 <span className="text-slate-400 dark:text-slate-505 font-medium">Deadline: 15 Aug 2026</span>
                 <Link to="/schemes" className="text-govblue-600 dark:text-govblue-400 font-bold hover:underline flex items-center">
                   <span>Details</span>
@@ -320,11 +321,11 @@ const Home = () => {
             {/* Scholarship */}
             <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 p-6 rounded-2xl shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-bold text-govblue-700 dark:text-govblue-400 bg-govblue-50 dark:bg-govblue-900/40 px-2 py-0.5 rounded-full uppercase">Education</span>
+                <span className="text-xs font-bold text-govblue-700 dark:text-govblue-400 bg-govblue-50 dark:bg-govblue-900/40 px-2 py-0.5 rounded-full uppercase">Education</span>
                 <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mt-2 mb-1">Post Matric Scholarship</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Reimbursement of tuition fees and monthly allowances up to ₹1,200 for SC/ST students.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Reimbursement of tuition fees and monthly allowances up to ₹1,200 for SC/ST students.</p>
               </div>
-              <div className="border-t border-slate-100 dark:border-white/10 mt-4 pt-4 flex justify-between items-center text-xs">
+              <div className="border-t border-slate-100 dark:border-white/10 mt-4 pt-4 flex justify-between items-center text-sm">
                 <span className="text-slate-400 dark:text-slate-550 font-medium">Deadline: 31 Jul 2026</span>
                 <Link to="/schemes" className="text-govblue-600 dark:text-govblue-400 font-bold hover:underline flex items-center">
                   <span>Details</span>
@@ -336,11 +337,11 @@ const Home = () => {
             {/* APY */}
             <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 p-6 rounded-2xl shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-bold text-indigo-700 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/40 px-2 py-0.5 rounded-full uppercase">Pension</span>
+                <span className="text-xs font-bold text-indigo-700 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/40 px-2 py-0.5 rounded-full uppercase">Pension</span>
                 <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mt-2 mb-1">Atal Pension Yojana (APY)</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Guaranteed minimum pension of ₹1,000 to ₹5,000 per month after age 60 for unorganized workers.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Guaranteed minimum pension of ₹1,000 to ₹5,000 per month after age 60 for unorganized workers.</p>
               </div>
-              <div className="border-t border-slate-100 dark:border-white/10 mt-4 pt-4 flex justify-between items-center text-xs">
+              <div className="border-t border-slate-100 dark:border-white/10 mt-4 pt-4 flex justify-between items-center text-sm">
                 <span className="text-slate-400 dark:text-slate-550 font-medium">Deadline: 30 Nov 2026</span>
                 <Link to="/schemes" className="text-govblue-600 dark:text-govblue-400 font-bold hover:underline flex items-center">
                   <span>Details</span>
@@ -353,9 +354,9 @@ const Home = () => {
       </section>
 
       {/* Call to Action CTA */}
-      <section className="bg-gradient-gov py-16 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <section className="bg-gradient-to-r from-govblue-800 to-govblue-950 dark:from-[#080d1a] dark:to-[#0b1120] py-16 text-white relative overflow-hidden border-t border-govblue-700/50 dark:border-white/5">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-govblue-400/20 dark:bg-govblue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold">{t('readyToDiscover')}</h2>
           <p className="text-sm sm:text-base text-govblue-100 max-w-lg mx-auto">
             {t('takeTwoMins')}

@@ -181,7 +181,7 @@ const Profile = () => {
 
         {/* Completeness Gauge */}
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-4 rounded-2xl shadow-sm dark:shadow-none w-full md:w-56 shrink-0">
-          <div className="flex justify-between items-center mb-1 text-xs">
+          <div className="flex justify-between items-center mb-1 text-sm">
             <span className="font-bold text-slate-700 dark:text-slate-300">Profile Completion</span>
             <span className={`font-extrabold ${completeness === 100 ? 'text-govgreen-600 dark:text-govgreen-400' : 'text-govblue-600 dark:text-govblue-400'}`}>{completeness}%</span>
           </div>
@@ -193,7 +193,7 @@ const Profile = () => {
               style={{ width: `${completeness}%` }}
             ></div>
           </div>
-          <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1.5 leading-normal">
+          <p className="text-xs text-slate-400 dark:text-slate-500 mt-1.5 leading-normal">
             {completeness === 100 ? "🎉 Maximum matching precision enabled!" : "Fill parameters for better recommendation matching."}
           </p>
         </div>
@@ -223,7 +223,7 @@ const Profile = () => {
               <h3 className={`text-sm font-extrabold ${isAadhaarVerified ? 'text-govgreen-800 dark:text-govgreen-400' : 'text-amber-800 dark:text-amber-400'}`}>
                 {isAadhaarVerified ? "Aadhaar eKYC Verified" : "Identity Not Verified"}
               </h3>
-              <p className={`text-[11px] font-medium mt-0.5 leading-snug ${isAadhaarVerified ? 'text-govgreen-600 dark:text-govgreen-500' : 'text-amber-600 dark:text-amber-500'}`}>
+              <p className={`text-sm font-medium mt-0.5 leading-snug ${isAadhaarVerified ? 'text-govgreen-600 dark:text-govgreen-500' : 'text-amber-600 dark:text-amber-500'}`}>
                 {isAadhaarVerified 
                   ? "Your core details (Name, Age, Gender, State) have been securely fetched from UIDAI and locked." 
                   : "Please verify your Aadhaar to prevent fraudulent applications and auto-fill your profile details."}
@@ -234,7 +234,7 @@ const Profile = () => {
             <button 
               type="button"
               onClick={() => { setShowAadhaarModal(true); setAadhaarStep(1); setAadhaarOTP(''); setAadhaarNumber(''); }}
-              className="shrink-0 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow-sm transition-all cursor-pointer"
+              className="shrink-0 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-xl shadow-sm transition-all cursor-pointer"
             >
               Verify via Aadhaar
             </button>
@@ -305,7 +305,7 @@ const Profile = () => {
                   type="button"
                   onClick={() => !isAadhaarVerified && setGender(g)}
                   disabled={isAadhaarVerified}
-                  className={`py-2 px-3 border rounded-xl text-xs font-bold transition-all ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} ${
+                  className={`py-2 px-3 border rounded-xl text-sm font-bold transition-all ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} ${
                     gender === g
                       ? 'border-govblue-600 dark:border-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 text-govblue-700 dark:text-govblue-300'
                       : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -352,7 +352,7 @@ const Profile = () => {
                   key={cat}
                   type="button"
                   onClick={() => setCategory(cat)}
-                  className={`py-2 px-1 border rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${
+                  className={`py-2 px-1 border rounded-xl text-sm font-bold transition-all cursor-pointer text-center ${
                     category === cat
                       ? 'border-govblue-600 dark:border-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 text-govblue-700 dark:text-govblue-300'
                       : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -374,7 +374,7 @@ const Profile = () => {
                   key={loc}
                   type="button"
                   onClick={() => setLocationType(loc)}
-                  className={`flex-1 py-2 px-3 border rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${
+                  className={`flex-1 py-2 px-3 border rounded-xl text-sm font-bold transition-all cursor-pointer text-center ${
                     locationType === loc
                       ? 'border-govblue-600 dark:border-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 text-govblue-700 dark:text-govblue-300'
                       : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -484,10 +484,10 @@ const Profile = () => {
             </div>
             <div className="flex-1">
               <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">{t('disabilityStatus')}</h3>
-              <p className="text-xs text-slate-400 dark:text-slate-400 leading-normal mb-3">
+              <p className="text-sm text-slate-400 dark:text-slate-400 leading-normal mb-3">
                 Check this box if you possess a government Disability ID (UDID) certificate.
               </p>
-              <label className="inline-flex items-center space-x-2 text-xs font-bold text-slate-700 dark:text-slate-350 cursor-pointer select-none">
+              <label className="inline-flex items-center space-x-2 text-sm font-bold text-slate-700 dark:text-slate-350 cursor-pointer select-none">
                 <input type="checkbox" checked={disabilityStatus} onChange={(e) => setDisabilityStatus(e.target.checked)} className="w-4 h-4 accent-govblue-600 rounded cursor-pointer" />
                 <span>{t('disabled')}</span>
               </label>
@@ -499,10 +499,10 @@ const Profile = () => {
             </div>
             <div className="flex-1">
               <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">Single Parent Status</h3>
-              <p className="text-xs text-slate-400 dark:text-slate-400 leading-normal mb-3">
+              <p className="text-sm text-slate-400 dark:text-slate-400 leading-normal mb-3">
                 Check this box if you are a single parent supporting dependents. This may unlock specific assistance.
               </p>
-              <label className="inline-flex items-center space-x-2 text-xs font-bold text-slate-700 dark:text-slate-350 cursor-pointer select-none">
+              <label className="inline-flex items-center space-x-2 text-sm font-bold text-slate-700 dark:text-slate-350 cursor-pointer select-none">
                 <input type="checkbox" checked={singleParent} onChange={(e) => setSingleParent(e.target.checked)} className="w-4 h-4 accent-govblue-600 rounded cursor-pointer" />
                 <span>I am a Single Parent</span>
               </label>
@@ -532,7 +532,7 @@ const Profile = () => {
 
         {/* Footer save action */}
         <div className="px-6 py-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
-          <div className="flex items-center space-x-1.5 text-xs text-slate-400 dark:text-slate-500 font-medium">
+          <div className="flex items-center space-x-1.5 text-sm text-slate-400 dark:text-slate-500 font-medium">
             <ShieldCheck className="w-4 h-4 text-govgreen-600" />
             <span>Encrypted transmission. Mapped directly inside MongoDB.</span>
           </div>
@@ -565,7 +565,7 @@ const Profile = () => {
                 🇮🇳
               </div>
               <h3 className="text-xl font-extrabold text-slate-800 dark:text-white">Aadhaar eKYC</h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 {aadhaarStep === 1 
                   ? "Enter your 12-digit Aadhaar number to verify your identity and auto-fill core details." 
                   : "An OTP has been sent to your Aadhaar linked mobile number ending in ******4829."}
@@ -596,7 +596,7 @@ const Profile = () => {
               <button 
                 type="button" 
                 onClick={() => { setShowAadhaarModal(false); setAadhaarStep(1); }}
-                className="flex-1 py-3 text-xs font-bold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+                className="flex-1 py-3 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -612,7 +612,7 @@ const Profile = () => {
                     }
                   }}
                   disabled={aadhaarNumber.length !== 12}
-                  className="flex-1 py-3 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl disabled:opacity-50 transition-colors flex justify-center items-center cursor-pointer shadow-md"
+                  className="flex-1 py-3 text-sm font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl disabled:opacity-50 transition-colors flex justify-center items-center cursor-pointer shadow-md"
                 >
                   Send OTP
                 </button>
@@ -635,7 +635,7 @@ const Profile = () => {
                     }
                   }}
                   disabled={verifyingOTP || aadhaarOTP.length !== 6}
-                  className="flex-1 py-3 text-xs font-bold text-white bg-govgreen-600 hover:bg-govgreen-700 rounded-xl disabled:opacity-50 transition-colors flex justify-center items-center cursor-pointer shadow-md"
+                  className="flex-1 py-3 text-sm font-bold text-white bg-govgreen-600 hover:bg-govgreen-700 rounded-xl disabled:opacity-50 transition-colors flex justify-center items-center cursor-pointer shadow-md"
                 >
                   {verifyingOTP ? <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div> : "Verify OTP"}
                 </button>

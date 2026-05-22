@@ -82,7 +82,7 @@ const Login = () => {
           <div className="space-y-1.5">
             <div className="flex justify-between items-center">
               <label className="form-label">Password</label>
-              <span className="text-xs text-govblue-600 dark:text-govblue-400 font-bold hover:underline cursor-pointer">Forgot?</span>
+              <span className="text-sm text-govblue-600 dark:text-govblue-400 font-bold hover:underline cursor-pointer">Forgot?</span>
             </div>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 dark:text-slate-500">

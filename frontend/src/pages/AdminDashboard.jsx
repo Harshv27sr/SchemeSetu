@@ -234,7 +234,7 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-3xl shadow-sm dark:shadow-none transition-colors duration-300">
           <div className="flex justify-between items-center">
-            <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+            <span className="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">
               {t('totalUsers')}
             </span>
 
@@ -248,7 +248,7 @@ const AdminDashboard = () => {
 
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-3xl shadow-sm dark:shadow-none transition-colors duration-300">
           <div className="flex justify-between items-center">
-            <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+            <span className="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">
               {t('activeSchemes')}
             </span>
 
@@ -262,7 +262,7 @@ const AdminDashboard = () => {
 
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-3xl shadow-sm dark:shadow-none transition-colors duration-300">
           <div className="flex justify-between items-center">
-            <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+            <span className="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">
               {t('applicationsTab')}
             </span>
 
@@ -276,7 +276,7 @@ const AdminDashboard = () => {
 
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-6 rounded-3xl shadow-sm dark:shadow-none transition-colors duration-300">
           <div className="flex justify-between items-center">
-            <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+            <span className="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">
               {t('ocrAlertsRate')}
             </span>
 
@@ -329,7 +329,7 @@ const AdminDashboard = () => {
       {activeTab === 'applications' && (
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 rounded-3xl shadow-sm dark:shadow-none overflow-hidden overflow-x-auto transition-colors duration-300">
           <table className="w-full">
-            <thead className="bg-slate-50 dark:bg-slate-800 text-left text-xs font-bold text-slate-500 dark:text-slate-300 border-b border-slate-100 dark:border-white/5 uppercase tracking-wider">
+            <thead className="bg-slate-50 dark:bg-slate-800 text-left text-sm font-bold text-slate-500 dark:text-slate-300 border-b border-slate-100 dark:border-white/5 uppercase tracking-wider">
               <tr>
                 <th className="p-4 font-bold">{t('tableHeaderId')}</th>
                 <th className="p-4 font-bold">{t('tableHeaderCitizen')}</th>
@@ -345,7 +345,7 @@ const AdminDashboard = () => {
                   key={app._id}
                   className="hover:bg-slate-50 dark:hover:bg-slate-800/40 text-slate-700 dark:text-slate-350 transition-colors"
                 >
-                  <td className="p-4 text-xs font-mono font-bold text-slate-500 dark:text-slate-400">
+                  <td className="p-4 text-sm font-mono font-bold text-slate-500 dark:text-slate-400">
                     #{app._id?.slice(-6)}
                   </td>
 
@@ -360,7 +360,7 @@ const AdminDashboard = () => {
 
                   <td className="p-4">
                     <span
-                      className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(
+                      className={`inline-flex px-3 py-1 rounded-full text-sm font-semibold ${getStatusColor(
                         app.status
                       )}`}
                     >
@@ -371,7 +371,7 @@ const AdminDashboard = () => {
                   <td className="p-4">
                     <button
                       onClick={() => handleReview(app)}
-                      className="bg-govblue-600 hover:bg-govblue-700 text-white px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold cursor-pointer transition-all shadow-sm hover:shadow"
+                      className="bg-govblue-600 hover:bg-govblue-700 text-white px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 text-sm font-bold cursor-pointer transition-all shadow-sm hover:shadow"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       <span>{t('reviewBtn')}</span>
@@ -394,7 +394,7 @@ const AdminDashboard = () => {
             >
               <div>
                 <div className="flex justify-between items-start mb-3">
-                  <span className="text-[10px] font-bold text-govblue-600 dark:text-govblue-400 bg-govblue-50 dark:bg-govblue-950/30 px-2.5 py-0.5 rounded-full uppercase">
+                  <span className="text-xs font-bold text-govblue-600 dark:text-govblue-400 bg-govblue-50 dark:bg-govblue-950/30 px-2.5 py-0.5 rounded-full uppercase">
                     {sch.state === "Central" ? "Central Scheme" : `${sch.state} State`}
                   </span>
 
@@ -419,17 +419,17 @@ const AdminDashboard = () => {
                   {sch.title}
                 </h3>
 
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed mb-4">
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed mb-4">
                   {sch.description}
                 </p>
 
-                <div className="text-xs text-slate-400 dark:text-slate-500 font-medium">
+                <div className="text-sm text-slate-400 dark:text-slate-500 font-medium">
                   <span className="font-bold text-slate-600 dark:text-slate-350">{t('requiredDocsLabel')}:</span>{' '}
                   {sch.requiredDocuments?.join(', ')}
                 </div>
               </div>
 
-              <div className="border-t border-slate-100 dark:border-white/5 mt-4 pt-4 text-[11px] text-slate-400 dark:text-slate-500 font-semibold flex justify-between">
+              <div className="border-t border-slate-100 dark:border-white/5 mt-4 pt-4 text-sm text-slate-400 dark:text-slate-500 font-semibold flex justify-between">
                 <span>
                   {t('maxIncomeLabel')}: ₹
                   {sch.eligibility?.maxIncome?.toLocaleString()}
@@ -449,7 +449,7 @@ const AdminDashboard = () => {
       {activeTab === 'grievances' && (
         <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 rounded-3xl shadow-sm dark:shadow-none overflow-hidden overflow-x-auto transition-colors duration-300">
           <table className="w-full">
-            <thead className="bg-slate-50 dark:bg-slate-800 text-left text-xs font-bold text-slate-500 dark:text-slate-300 border-b border-slate-100 dark:border-white/5 uppercase tracking-wider">
+            <thead className="bg-slate-50 dark:bg-slate-800 text-left text-sm font-bold text-slate-500 dark:text-slate-300 border-b border-slate-100 dark:border-white/5 uppercase tracking-wider">
               <tr>
                 <th className="p-4 font-bold">Ticket ID</th>
                 <th className="p-4 font-bold">Citizen</th>
@@ -463,7 +463,7 @@ const AdminDashboard = () => {
             <tbody className="divide-y divide-slate-100 dark:divide-white/5">
               {tickets.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="p-8 text-center text-xs text-slate-400 dark:text-slate-505 font-semibold">
+                  <td colSpan="6" className="p-8 text-center text-sm text-slate-400 dark:text-slate-505 font-semibold">
                     No citizen grievance support tickets filed yet.
                   </td>
                 </tr>
@@ -473,35 +473,35 @@ const AdminDashboard = () => {
                     key={t._id}
                     className="hover:bg-slate-50 dark:hover:bg-slate-800/40 text-slate-700 dark:text-slate-350 transition-colors"
                   >
-                    <td className="p-4 text-xs font-mono font-bold text-slate-500 dark:text-slate-400">
+                    <td className="p-4 text-sm font-mono font-bold text-slate-500 dark:text-slate-400">
                       {t.ticketId}
                     </td>
 
                     <td className="p-4 text-sm font-semibold text-slate-800 dark:text-slate-200">
                       <div>
                         <p className="font-bold">{t.userId?.name || 'Unknown Citizen'}</p>
-                        <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">{t.userId?.email || ''}</p>
+                        <p className="text-xs text-slate-400 dark:text-slate-500 font-medium">{t.userId?.email || ''}</p>
                       </div>
                     </td>
 
-                    <td className="p-4 text-xs max-w-xs font-medium text-slate-700 dark:text-slate-300 break-words">
+                    <td className="p-4 text-sm max-w-xs font-medium text-slate-700 dark:text-slate-300 break-words">
                       <div>
                         <p className="font-bold">{t.query}</p>
                         {t.reply && (
-                          <p className="text-[10px] text-indigo-650 dark:text-indigo-400 mt-1 pl-2 border-l border-indigo-450 font-medium animate-none">
+                          <p className="text-xs text-indigo-650 dark:text-indigo-400 mt-1 pl-2 border-l border-indigo-450 font-medium animate-none">
                             <span className="font-bold">Reply: </span>{t.reply}
                           </p>
                         )}
                       </div>
                     </td>
 
-                    <td className="p-4 text-xs text-slate-500 dark:text-slate-400">
+                    <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                       {new Date(t.createdAt || t.date).toLocaleDateString()}
                     </td>
 
                     <td className="p-4">
                       <span
-                        className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${
+                        className={`inline-flex px-3 py-1 rounded-full text-sm font-semibold ${
                           t.status === 'Resolved'
                             ? 'text-govgreen-700 bg-govgreen-50 dark:bg-govgreen-950/30 border border-govgreen-200 dark:border-govgreen-900/30 dark:text-govgreen-450'
                             : t.status === 'Officer Responded'
@@ -521,7 +521,7 @@ const AdminDashboard = () => {
                           setReplyStatus(t.status || 'Officer Responded');
                           setTicketReplyModalOpen(true);
                         }}
-                        className="bg-govblue-600 hover:bg-govblue-700 text-white px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold cursor-pointer transition-all shadow-sm hover:shadow"
+                        className="bg-govblue-600 hover:bg-govblue-700 text-white px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 text-sm font-bold cursor-pointer transition-all shadow-sm hover:shadow"
                       >
                         <Edit className="w-3.5 h-3.5" />
                         <span>Reply</span>
@@ -555,30 +555,30 @@ const AdminDashboard = () => {
             </h2>
 
             <div className="bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-2xl p-4 mb-6">
-              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">
                 Applicant Extraction Details
               </span>
-              <div className="grid grid-cols-2 gap-4 text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <div className="grid grid-cols-2 gap-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block">Name</span>
+                  <span className="text-xs font-bold text-slate-400 dark:text-slate-500 block">Name</span>
                   {selectedApp.validationResult?.extractedData?.name || 'Rahul Sharma'}
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block">Status</span>
-                  <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] mt-0.5 ${selectedApp.validationResult?.status === "Success" ? 'bg-govgreen-50 text-govgreen-600 dark:bg-govgreen-950/20 dark:text-govgreen-400' : 'bg-rose-50 text-rose-600 dark:bg-rose-950/20 dark:text-rose-400'}`}>
+                  <span className="text-xs font-bold text-slate-400 dark:text-slate-500 block">Status</span>
+                  <span className={`inline-flex px-2 py-0.5 rounded-full text-xs mt-0.5 ${selectedApp.validationResult?.status === "Success" ? 'bg-govgreen-50 text-govgreen-600 dark:bg-govgreen-950/20 dark:text-govgreen-400' : 'bg-rose-50 text-rose-600 dark:bg-rose-950/20 dark:text-rose-400'}`}>
                     {selectedApp.validationResult?.status || 'Verified'}
                   </span>
                 </div>
               </div>
               {selectedApp.validationResult?.remarks && (
-                <div className="mt-3 pt-3 border-t border-slate-100 dark:border-white/5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                <div className="mt-3 pt-3 border-t border-slate-100 dark:border-white/5 text-sm font-medium text-slate-500 dark:text-slate-400">
                   {selectedApp.validationResult.remarks}
                 </div>
               )}
             </div>
 
             <div className="space-y-3">
-              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                 {t('changeStatus')}
               </span>
               <div className="flex flex-wrap gap-2 pt-1">
@@ -593,7 +593,7 @@ const AdminDashboard = () => {
                     onClick={() =>
                       handleStatusChange(selectedApp._id, status)
                     }
-                    className={`px-4 py-2 text-xs font-bold rounded-xl cursor-pointer transition-all border ${getStatusColor(
+                    className={`px-4 py-2 text-sm font-bold rounded-xl cursor-pointer transition-all border ${getStatusColor(
                       status
                     )}`}
                   >
@@ -756,7 +756,7 @@ const AdminDashboard = () => {
                   {ALL_DOCUMENTS.map((doc) => (
                     <label
                       key={doc}
-                      className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-350 cursor-pointer select-none bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/5 px-3 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-750 transition-colors"
+                      className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-350 cursor-pointer select-none bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/5 px-3 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-750 transition-colors"
                     >
                       <input
                         type="checkbox"
@@ -811,18 +811,18 @@ const AdminDashboard = () => {
             <h2 className="text-xl font-extrabold text-slate-900 dark:text-white mb-2 leading-tight">
               Review Support Query
             </h2>
-            <p className="text-xs text-slate-400 dark:text-slate-500 font-bold mb-4 font-mono">
+            <p className="text-sm text-slate-400 dark:text-slate-500 font-bold mb-4 font-mono">
               Ticket Ref: {selectedTicket.ticketId}
             </p>
 
             <div className="bg-slate-50 dark:bg-slate-955 border border-slate-100 dark:border-white/5 rounded-2xl p-4 mb-6">
-              <div className="text-xs font-semibold text-slate-700 dark:text-slate-300 space-y-2">
+              <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 space-y-2">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-450 dark:text-slate-500 block">CITIZEN INFO</span>
+                  <span className="text-xs font-bold text-slate-450 dark:text-slate-500 block">CITIZEN INFO</span>
                   <p className="font-extrabold text-slate-800 dark:text-slate-200">{selectedTicket.userId?.name || 'Unknown Citizen'} ({selectedTicket.userId?.email || 'N/A'})</p>
                 </div>
                 <div className="pt-2 border-t border-slate-100 dark:border-white/5">
-                  <span className="text-[10px] font-bold text-slate-455 dark:text-slate-500 block">CITIZEN DESCRIPTION</span>
+                  <span className="text-xs font-bold text-slate-455 dark:text-slate-500 block">CITIZEN DESCRIPTION</span>
                   <p className="font-medium text-slate-800 dark:text-slate-200 italic mt-0.5">"{selectedTicket.query}"</p>
                 </div>
               </div>
@@ -830,25 +830,25 @@ const AdminDashboard = () => {
 
             <form onSubmit={handleSaveTicketReply} className="space-y-4">
               <div>
-                <label className="form-label font-bold text-xs">Officer Desk Reply Content</label>
+                <label className="form-label font-bold text-sm">Officer Desk Reply Content</label>
                 <textarea
                   placeholder="Provide detailed instructions or verification notes..."
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-govblue-500 placeholder-slate-400 dark:placeholder-slate-600 resize-none h-24"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-govblue-500 placeholder-slate-400 dark:placeholder-slate-600 resize-none h-24"
                   required
                 />
               </div>
 
               <div>
-                <label className="form-label font-bold text-xs">Update Status</label>
+                <label className="form-label font-bold text-sm">Update Status</label>
                 <div className="flex gap-2.5 mt-1.5">
                   {['Officer Responded', 'Resolved'].map((status) => (
                     <button
                       key={status}
                       type="button"
                       onClick={() => setReplyStatus(status)}
-                      className={`px-4 py-2 text-xs font-bold rounded-xl cursor-pointer transition-all border ${
+                      className={`px-4 py-2 text-sm font-bold rounded-xl cursor-pointer transition-all border ${
                         replyStatus === status
                           ? 'bg-govblue-600 border-govblue-600 text-white font-extrabold'
                           : 'border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -864,14 +864,14 @@ const AdminDashboard = () => {
                 <button
                   type="button"
                   onClick={() => setTicketReplyModalOpen(false)}
-                  className="flex-1 border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold py-3 rounded-xl transition-all cursor-pointer text-xs"
+                  className="flex-1 border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold py-3 rounded-xl transition-all cursor-pointer text-sm"
                 >
                   Cancel
                 </button>
 
                 <button
                   type="submit"
-                  className="flex-1 bg-govblue-600 hover:bg-govblue-700 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-govblue-600/10 hover:-translate-y-0.5 cursor-pointer text-xs"
+                  className="flex-1 bg-govblue-600 hover:bg-govblue-700 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-govblue-600/10 hover:-translate-y-0.5 cursor-pointer text-sm"
                 >
                   Submit Official Response
                 </button>

@@ -7,14 +7,13 @@ import Scheme from '../models/Scheme.js';
 export const getMyApplications = async (req, res) => {
   try {
     const apps = await Application.find({ userId: req.user._id })
-      .populate('schemeId')
       .sort('-submittedAt');
     
     // Format to match frontend expectation
     const formatted = apps.map(app => ({
       _id: app._id,
-      schemeId: app.schemeId?._id,
-      scheme: app.schemeId,
+      schemeId: app.schemeId,
+      scheme: null,
       status: app.status,
       uploadedDocuments: app.uploadedDocuments,
       validationResult: app.validationResult,
@@ -62,10 +61,7 @@ export const submitApplication = async (req, res) => {
   const { schemeId, uploadedDocuments, validationResult } = req.body;
 
   try {
-    const scheme = await Scheme.findById(schemeId);
-    if (!scheme) {
-      return res.status(404).json({ message: 'Target scheme does not exist in registry' });
-    }
+
 
     const application = new Application({
       userId: req.user._id,
@@ -83,17 +79,13 @@ export const submitApplication = async (req, res) => {
 
     const savedApp = await application.save();
     
-    // Populate before sending back
-    const populated = await Application.findById(savedApp._id).populate('schemeId');
-    
     res.status(201).json({
-      _id: populated._id,
-      schemeId: populated.schemeId?._id,
-      scheme: populated.schemeId,
-      status: populated.status,
-      uploadedDocuments: populated.uploadedDocuments,
-      validationResult: populated.validationResult,
-      submittedAt: populated.submittedAt
+      _id: savedApp._id,
+      schemeId: savedApp.schemeId,
+      status: savedApp.status,
+      uploadedDocuments: savedApp.uploadedDocuments,
+      validationResult: savedApp.validationResult,
+      submittedAt: savedApp.submittedAt
     });
   } catch (error) {
     res.status(400).json({ message: error.message });

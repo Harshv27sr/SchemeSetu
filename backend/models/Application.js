@@ -7,8 +7,7 @@ const ApplicationSchema = new mongoose.Schema({
     required: true
   },
   schemeId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Scheme',
+    type: String,
     required: true
   },
   status: {

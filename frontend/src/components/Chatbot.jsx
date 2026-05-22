@@ -197,7 +197,7 @@ const Chatbot = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold leading-tight">Setu Doot AI</h3>
-                  <p className="text-[10px] text-govblue-100 flex items-center">
+                  <p className="text-xs text-govblue-100 flex items-center">
                     <Sparkles className="w-2.5 h-2.5 mr-1" /> Smart Assistant
                   </p>
                 </div>
@@ -217,7 +217,7 @@ const Chatbot = () => {
 
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 dark:bg-slate-950/50 scrollbar-hide">
-              <div className="text-center text-[10px] text-slate-400 dark:text-slate-500 font-medium mb-4 uppercase tracking-wider">
+              <div className="text-center text-xs text-slate-400 dark:text-slate-500 font-medium mb-4 uppercase tracking-wider">
                 Today
               </div>
 
@@ -234,7 +234,7 @@ const Chatbot = () => {
                       : 'bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-white/5 text-slate-700 dark:text-slate-300 rounded-bl-sm shadow-sm'
                     }`}>
                     <div className="whitespace-pre-wrap leading-relaxed">{msg.type === 'bot' ? parseMarkup(msg.text) : msg.text}</div>
-                    <div className={`text-[9px] mt-1 text-right ${msg.type === 'user' ? 'text-govblue-200' : 'text-slate-400'}`}>
+                    <div className={`text-xs mt-1 text-right ${msg.type === 'user' ? 'text-govblue-200' : 'text-slate-400'}`}>
                       {msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </div>
                   </div>
@@ -284,7 +284,7 @@ const Chatbot = () => {
                 </button>
               </form>
               <div className="text-center mt-2">
-                <span className="text-[9px] text-slate-400 dark:text-slate-500">
+                <span className="text-xs text-slate-400 dark:text-slate-500">
                   Setu Doot AI Simulator • Private & Secure
                 </span>
               </div>
