@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
   },
   profile: {
     fullName: { type: String, default: '' },
+    dob: { type: String, default: '' },
     age: { type: Number, default: null },
     gender: { type: String, enum: ['Male', 'Female', 'Other', ''], default: '' },
     state: { type: String, default: 'All' },
@@ -32,7 +33,15 @@ const UserSchema = new mongoose.Schema({
     income: { type: Number, default: 0 },
     education: { type: String, default: '' },
     disabilityStatus: { type: Boolean, default: false },
-    isAadhaarVerified: { type: Boolean, default: false }
+    isAadhaarVerified: { type: Boolean, default: false },
+    bpl: { type: Boolean, default: false },
+    minority: { type: Boolean, default: false },
+    locationType: { type: String, enum: ['Rural', 'Urban', ''], default: '' },
+    employmentType: { type: String, enum: ['Full-time', 'Part-time', 'Self-employed', 'Unemployed', ''], default: '' },
+    dependents: { type: Number, default: 0 },
+    familyMembers: { type: Number, default: 1 },
+    singleParent: { type: Boolean, default: false },
+    sectorPreference: { type: String, default: '' }
   },
   documents: [{
     type: { type: String, required: true },

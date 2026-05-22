@@ -65,7 +65,7 @@ const Register = () => {
           </div>
         )}
 
-        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit} autoComplete="off">
           {/* Full Name field */}
           <div className="space-y-1.5">
             <label className="form-label">Full Name</label>
@@ -80,6 +80,7 @@ const Register = () => {
                 onChange={(e) => setName(e.target.value)}
                 className="form-input pl-10"
                 placeholder="e.g. Rahul Sharma"
+                autoComplete="new-name"
               />
             </div>
           </div>
@@ -98,6 +99,7 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-input pl-10"
                 placeholder="e.g. rahul@example.com"
+                autoComplete="new-email"
               />
             </div>
           </div>
@@ -116,6 +118,7 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-input pl-10"
                 placeholder="At least 6 characters"
+                autoComplete="new-password"
               />
             </div>
           </div>

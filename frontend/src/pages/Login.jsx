@@ -58,7 +58,7 @@ const Login = () => {
           </div>
         )}
 
-        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit} autoComplete="off">
           {/* Email field */}
           <div className="space-y-1.5">
             <label className="form-label">{t('profileTitle') ? "Email Address" : "ईमेल पता"}</label>
@@ -73,6 +73,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-input pl-10"
                 placeholder="e.g. rahul@example.com"
+                autoComplete="new-email"
               />
             </div>
           </div>
@@ -94,6 +95,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-input pl-10"
                 placeholder="••••••••"
+                autoComplete="new-password"
               />
             </div>
           </div>
