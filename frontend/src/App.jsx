@@ -1,6 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -17,10 +17,35 @@ import SchemeDetail from './pages/SchemeDetail';
 import ApplyScheme from './pages/ApplyScheme';
 import AdminDashboard from './pages/AdminDashboard';
 
+// RouteTranslator automatically triggers Google Translate when navigating to new pages
+const RouteTranslator = () => {
+  const location = useLocation();
+  const { language } = useAuth();
+
+  useEffect(() => {
+    if (language === 'hi') {
+      setTimeout(() => {
+        try {
+          const select = document.querySelector('.goog-te-combo');
+          if (select) {
+            select.value = 'hi';
+            select.dispatchEvent(new Event('change'));
+          }
+        } catch (e) {
+          console.error("Translation trigger error:", e);
+        }
+      }, 400); // 400ms delay gives React time to render the new page's DOM elements
+    }
+  }, [location.pathname, language]);
+
+  return null;
+};
+
 function App() {
   return (
     <Router>
       <AuthProvider>
+        <RouteTranslator />
         <div className="flex flex-col min-h-screen bg-[#e8edf2] dark:bg-slate-950 transition-colors duration-300">
           <Navbar />
 
