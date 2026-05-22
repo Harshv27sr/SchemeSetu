@@ -12,17 +12,17 @@ const Profile = () => {
   const [fullName, setFullName] = useState('');
   const [dob, setDob] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState('Male');
-  const [stateName, setStateName] = useState('All');
+  const [gender, setGender] = useState('');
+  const [stateName, setStateName] = useState('');
   
-  const [category, setCategory] = useState('General');
+  const [category, setCategory] = useState('');
   const [bpl, setBpl] = useState(false);
   const [minority, setMinority] = useState(false);
-  const [locationType, setLocationType] = useState('Urban');
+  const [locationType, setLocationType] = useState('');
   
   const [education, setEducation] = useState('');
-  const [occupation, setOccupation] = useState('Student');
-  const [employmentType, setEmploymentType] = useState('Unemployed');
+  const [occupation, setOccupation] = useState('');
+  const [employmentType, setEmploymentType] = useState('');
   
   const [income, setIncome] = useState('');
   const [dependents, setDependents] = useState('');
@@ -65,16 +65,16 @@ const Profile = () => {
       setFullName(prof.fullName || user.name || '');
       setDob(prof.dob || '');
       setAge(prof.age || '');
-      setGender(prof.gender || 'Male');
-      setStateName(prof.state || 'All');
+      setGender(prof.gender || '');
+      setStateName(prof.state || '');
       
-      setCategory(prof.category || 'General');
+      setCategory(prof.category || '');
       setBpl(prof.bpl || false);
       setMinority(prof.minority || false);
-      setLocationType(prof.locationType || 'Urban');
+      setLocationType(prof.locationType || '');
       
-      setOccupation(prof.occupation || 'Student');
-      setEmploymentType(prof.employmentType || 'Unemployed');
+      setOccupation(prof.occupation || '');
+      setEmploymentType(prof.employmentType || '');
       setEducation(prof.education || '');
       
       setIncome(prof.income || '');
@@ -327,6 +327,7 @@ const Profile = () => {
               disabled={isAadhaarVerified}
               className={`form-input ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-slate-800' : 'cursor-pointer'}`}
             >
+              <option value="">Select State</option>
               {INDIAN_STATES.map(s => (
                 <option key={s} value={s}>{s}</option>
               ))}
@@ -422,6 +423,7 @@ const Profile = () => {
               <span>{t('occupation')}</span>
             </label>
             <select value={occupation} onChange={(e) => setOccupation(e.target.value)} className="form-input cursor-pointer">
+              <option value="">Select Occupation</option>
               {OCCUPATIONS.map(occ => (
                 <option key={occ} value={occ}>{t(occ.toLowerCase()) || occ}</option>
               ))}
