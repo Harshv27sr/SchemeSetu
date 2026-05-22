@@ -17,6 +17,22 @@ body { top: 0 !important; position: static !important; }
 .skiptranslate > iframe { display: none !important; }
 #goog-gt-tt { display: none !important; }
 
+/* FIX: Prevent Google Translate from breaking Flexbox and Grid layouts */
+font {
+  display: contents !important;
+}
+
+/* FIX: Typography adjustments for Hindi Devanagari Script */
+body.lang-hi {
+  line-height: 1.6 !important;
+}
+body.lang-hi * {
+  letter-spacing: 0.01em;
+}
+body.lang-hi p, body.lang-hi h1, body.lang-hi h2, body.lang-hi h3, body.lang-hi span, body.lang-hi a, body.lang-hi div {
+  word-break: break-word;
+}
+
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;

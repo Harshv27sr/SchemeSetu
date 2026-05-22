@@ -24,6 +24,7 @@ const RouteTranslator = () => {
 
   useEffect(() => {
     if (language === 'hi') {
+      document.body.classList.add('lang-hi');
       setTimeout(() => {
         try {
           const select = document.querySelector('.goog-te-combo');
@@ -35,6 +36,8 @@ const RouteTranslator = () => {
           console.error("Translation trigger error:", e);
         }
       }, 400); // 400ms delay gives React time to render the new page's DOM elements
+    } else {
+      document.body.classList.remove('lang-hi');
     }
   }, [location.pathname, language]);
 
