@@ -518,15 +518,12 @@ export const AuthProvider = ({ children }) => {
 
   // Update Profile
   const updateProfile = async (profileData) => {
-    setLoading(true);
     try {
       const res = await axios.put(`${API_URL}/auth/profile`, profileData);
       setUser(res.data);
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Profile update failed" };
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -633,7 +630,6 @@ export const AuthProvider = ({ children }) => {
 
   // Apply to Scheme (Wizard Submit)
   const applyToScheme = async (schemeId, uploadedDocs, validationResult) => {
-    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/applications`, {
         schemeId,
@@ -644,8 +640,6 @@ export const AuthProvider = ({ children }) => {
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to submit application" };
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -681,109 +675,85 @@ export const AuthProvider = ({ children }) => {
 
   // Document Vault Actions
   const uploadDocument = async (type, name) => {
-    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/auth/profile/documents`, { type, name });
       setUser(res.data);
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to upload document" };
-    } finally {
-      setLoading(false);
     }
   };
 
   const deleteDocument = async (docId) => {
-    setLoading(true);
     try {
       const res = await axios.delete(`${API_URL}/auth/profile/documents/${docId}`);
       setUser(res.data);
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to delete document" };
-    } finally {
-      setLoading(false);
     }
   };
 
   // Grievance Actions
   const raiseTicket = async (query) => {
-    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/grievances`, { query });
       setTickets(prev => [res.data, ...prev]);
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to submit grievance ticket" };
-    } finally {
-      setLoading(false);
     }
   };
 
   const replyToTicket = async (ticketId, reply, status) => {
-    setLoading(true);
     try {
       const res = await axios.put(`${API_URL}/grievances/${ticketId}/reply`, { reply, status });
       setTickets(prev => prev.map(t => t._id === ticketId ? res.data : t));
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to submit reply" };
-    } finally {
-      setLoading(false);
     }
   };
 
   // Admin CRUD for schemes
   const createScheme = async (schemeData) => {
-    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/schemes`, schemeData);
       setSchemes(prev => [...prev, res.data]);
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to create scheme" };
-    } finally {
-      setLoading(false);
     }
   };
 
   const updateScheme = async (id, schemeData) => {
-    setLoading(true);
     try {
       const res = await axios.put(`${API_URL}/schemes/${id}`, schemeData);
       setSchemes(prev => prev.map(s => s._id === id ? res.data : s));
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to update scheme" };
-    } finally {
-      setLoading(false);
     }
   };
 
   const deleteScheme = async (id) => {
-    setLoading(true);
     try {
       await axios.delete(`${API_URL}/schemes/${id}`);
       setSchemes(prev => prev.filter(s => s._id !== id));
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to delete scheme" };
-    } finally {
-      setLoading(false);
     }
   };
 
   // Admin status update
   const updateApplicationStatus = async (appId, status) => {
-    setLoading(true);
     try {
       const res = await axios.put(`${API_URL}/applications/${appId}/status`, { status });
       setApplications(prev => prev.map(app => app._id === appId ? res.data : app));
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Failed to update application status" };
-    } finally {
-      setLoading(false);
     }
   };
 
