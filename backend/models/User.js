@@ -31,7 +31,8 @@ const UserSchema = new mongoose.Schema({
     occupation: { type: String, enum: ['Student', 'Farmer', 'Business Owner', 'Unemployed', 'Retired', 'Others', ''], default: 'Others' },
     income: { type: Number, default: 0 },
     education: { type: String, default: '' },
-    disabilityStatus: { type: Boolean, default: false }
+    disabilityStatus: { type: Boolean, default: false },
+    isAadhaarVerified: { type: Boolean, default: false }
   },
   documents: [{
     type: { type: String, required: true },

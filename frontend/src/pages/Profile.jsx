@@ -18,6 +18,10 @@ const Profile = () => {
   const [income, setIncome] = useState('');
   const [education, setEducation] = useState('');
   const [disabilityStatus, setDisabilityStatus] = useState(false);
+  const [isAadhaarVerified, setIsAadhaarVerified] = useState(false);
+  const [showAadhaarModal, setShowAadhaarModal] = useState(false);
+  const [aadhaarOTP, setAadhaarOTP] = useState('');
+  const [verifyingOTP, setVerifyingOTP] = useState(false);
 
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
@@ -46,6 +50,7 @@ const Profile = () => {
       setIncome(prof.income || '');
       setEducation(prof.education || '');
       setDisabilityStatus(prof.disabilityStatus || false);
+      setIsAadhaarVerified(prof.isAadhaarVerified || false);
     }
   }, [user]);
 
@@ -78,7 +83,8 @@ const Profile = () => {
       occupation,
       income: parseInt(income) || 0,
       education,
-      disabilityStatus
+      disabilityStatus,
+      isAadhaarVerified
     };
 
     const res = await updateProfile(profileData);
@@ -137,6 +143,34 @@ const Profile = () => {
 
       {/* Main Profile Form */}
       <form onSubmit={handleSave} className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 rounded-3xl shadow-xl shadow-slate-200/40 dark:shadow-none overflow-hidden">
+        {/* eKYC Simulation Banner */}
+        <div className={`px-6 py-4 border-b ${isAadhaarVerified ? 'bg-govgreen-50 dark:bg-govgreen-950/20 border-govgreen-200 dark:border-govgreen-900/30' : 'bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900/30'} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4`}>
+          <div className="flex items-start space-x-3">
+            <div className={`p-2 rounded-full mt-0.5 shrink-0 ${isAadhaarVerified ? 'bg-govgreen-100 dark:bg-govgreen-900/30 text-govgreen-600 dark:text-govgreen-450' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-450'}`}>
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className={`text-sm font-extrabold ${isAadhaarVerified ? 'text-govgreen-800 dark:text-govgreen-400' : 'text-amber-800 dark:text-amber-400'}`}>
+                {isAadhaarVerified ? "Aadhaar eKYC Verified" : "Identity Not Verified"}
+              </h3>
+              <p className={`text-[11px] font-medium mt-0.5 leading-snug ${isAadhaarVerified ? 'text-govgreen-600 dark:text-govgreen-500' : 'text-amber-600 dark:text-amber-500'}`}>
+                {isAadhaarVerified 
+                  ? "Your core details (Name, Age, Gender, State) have been securely fetched from UIDAI and locked." 
+                  : "Please verify your Aadhaar to prevent fraudulent applications and lock your profile details."}
+              </p>
+            </div>
+          </div>
+          {!isAadhaarVerified && (
+            <button 
+              type="button"
+              onClick={() => setShowAadhaarModal(true)}
+              className="shrink-0 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow-sm transition-all cursor-pointer"
+            >
+              Verify Now
+            </button>
+          )}
+        </div>
+
         {/* Section divider */}
         <div className="px-6 py-4 bg-slate-100 dark:bg-slate-950 border-b border-slate-250 dark:border-white/5 flex items-center space-x-2">
           <User className="w-5 h-5 text-govblue-600 dark:text-govblue-400" />
@@ -156,8 +190,9 @@ const Profile = () => {
                 required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="form-input"
+                className={`form-input ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-slate-800' : ''}`}
                 placeholder="Rahul Sharma"
+                readOnly={isAadhaarVerified}
               />
             </div>
 
@@ -172,10 +207,11 @@ const Profile = () => {
                 required
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
-                className="form-input"
+                className={`form-input ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-slate-800' : ''}`}
                 placeholder="e.g. 24"
                 min="0"
                 max="120"
+                readOnly={isAadhaarVerified}
               />
             </div>
 
@@ -190,8 +226,9 @@ const Profile = () => {
                   <button
                     key={g}
                     type="button"
-                    onClick={() => setGender(g)}
-                    className={`py-2 px-3 border rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    onClick={() => !isAadhaarVerified && setGender(g)}
+                    disabled={isAadhaarVerified}
+                    className={`py-2 px-3 border rounded-xl text-xs font-bold transition-all ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} ${
                       gender === g
                         ? 'border-govblue-600 dark:border-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 text-govblue-700 dark:text-govblue-300'
                         : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -212,7 +249,8 @@ const Profile = () => {
               <select
                 value={stateName}
                 onChange={(e) => setStateName(e.target.value)}
-                className="form-input cursor-pointer"
+                disabled={isAadhaarVerified}
+                className={`form-input ${isAadhaarVerified ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-slate-800' : 'cursor-pointer'}`}
               >
                 {INDIAN_STATES.map(s => (
                   <option key={s} value={s}>{s}</option>
@@ -345,6 +383,67 @@ const Profile = () => {
           </button>
         </div>
       </form>
+
+      {/* Aadhaar Verification Simulation Modal */}
+      {showAadhaarModal && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <motion.div 
+            className="bg-slate-50/95 dark:bg-slate-900 rounded-3xl p-6 md:p-8 max-w-sm w-full border border-slate-200/50 dark:border-white/10 shadow-2xl space-y-5"
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+          >
+            <div className="text-center space-y-2">
+              <div className="w-16 h-16 bg-govblue-50 dark:bg-govblue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-2 text-3xl">
+                🇮🇳
+              </div>
+              <h3 className="text-xl font-extrabold text-slate-800 dark:text-white">Aadhaar eKYC</h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                An OTP has been sent to your Aadhaar linked mobile number ending in ******4829. Enter any 6-digit number to simulate verification.
+              </p>
+            </div>
+            
+            <input 
+              type="text" 
+              maxLength="6"
+              placeholder="000000" 
+              value={aadhaarOTP}
+              onChange={(e) => setAadhaarOTP(e.target.value.replace(/\D/g, ''))}
+              className="w-full px-4 py-4 text-center tracking-[0.5em] font-mono text-2xl font-bold border-2 border-slate-200 dark:border-white/10 rounded-2xl bg-white dark:bg-slate-950 focus:ring-2 focus:ring-govblue-500 focus:border-govblue-500 focus:outline-none dark:text-white shadow-inner"
+            />
+
+            <div className="flex space-x-3 pt-2">
+              <button 
+                type="button" 
+                onClick={() => { setShowAadhaarModal(false); setAadhaarOTP(''); }}
+                className="flex-1 py-3 text-xs font-bold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button 
+                type="button" 
+                onClick={() => {
+                  if(aadhaarOTP.length === 6) {
+                    setVerifyingOTP(true);
+                    setTimeout(() => {
+                      setIsAadhaarVerified(true);
+                      setShowAadhaarModal(false);
+                      setVerifyingOTP(false);
+                      setSuccessMsg('✅ Aadhaar Verified successfully! Core details are now securely locked.');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 1500);
+                  } else {
+                    alert("Please enter a 6 digit OTP");
+                  }
+                }}
+                disabled={verifyingOTP || aadhaarOTP.length !== 6}
+                className="flex-1 py-3 text-xs font-bold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl disabled:opacity-50 transition-colors flex justify-center items-center cursor-pointer shadow-md"
+              >
+                {verifyingOTP ? <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div> : "Verify OTP"}
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };
