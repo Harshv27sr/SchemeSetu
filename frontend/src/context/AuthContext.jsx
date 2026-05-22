@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api';
 
 // Core translation strings for English and Hindi
 const translations = {
@@ -385,7 +385,7 @@ export const AuthProvider = ({ children }) => {
       try {
         setLoading(true);
         // Test backend endpoint
-        const health = await axios.get(`${API_URL}/auth/health`);
+        const health = await axios.get(`${API_URL}/auth`);
         if (health.status === 200) {
           setApiActive(true);
           // Load real schemas from backend
