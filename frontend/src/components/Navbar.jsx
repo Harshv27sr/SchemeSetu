@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   const activeClassName = ({ isActive }) =>
-    `px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+    `inline-flex items-center justify-center px-4 py-2 rounded-xl text-lg font-bold leading-none transition-all duration-300 ${
       isActive
         ? 'bg-govblue-50 dark:bg-govblue-900/30 text-govblue-600 dark:text-govblue-400 shadow-sm shadow-govblue-100/50 dark:shadow-none'
         : 'text-slate-600 dark:text-slate-300 hover:text-govblue-600 dark:hover:text-govblue-400 hover:bg-slate-50 dark:hover:bg-slate-800/60'
@@ -56,15 +56,14 @@ const Navbar = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo Brand */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-govblue-600 to-govblue-500 flex items-center justify-center shadow-lg shadow-govblue-200/50 dark:shadow-none text-white font-bold text-lg border border-white/20 transform group-hover:rotate-6 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-govblue-600 to-govblue-500 flex items-center justify-center shadow-lg shadow-govblue-200/50 dark:shadow-none text-white font-bold text-xl border border-white/20 transform group-hover:rotate-6 transition-all duration-300">
               SS
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-govblue-900 dark:text-white tracking-tight leading-none">SchemeSetu</span>
-              <span className="text-[10px] text-govgreen-600 dark:text-govgreen-400 font-bold tracking-wider mt-0.5 uppercase">Digital Bridge</span>
+            <div className="flex flex-col justify-center">
+              <span className="text-2xl font-extrabold text-govblue-900 dark:text-white tracking-tight leading-none">SchemeSetu</span>
             </div>
           </Link>
 
@@ -95,11 +94,11 @@ const Navbar = () => {
           </div>
 
           {/* Utility buttons (Lang Toggle, Theme Toggle, Profile, Login/Logout) */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-6">
             {/* Language Toggler */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-1.5 px-3.5 py-2 bg-slate-100/60 dark:bg-slate-800/80 hover:bg-govblue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-govblue-600 dark:hover:text-govblue-400 rounded-xl text-xs font-bold border border-slate-200/50 dark:border-slate-700/50 hover:border-govblue-200/50 dark:hover:border-govblue-500/50 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center justify-center space-x-2 px-4 py-2 bg-slate-100/60 dark:bg-slate-800/80 hover:bg-govblue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-govblue-600 dark:hover:text-govblue-400 rounded-xl text-lg font-bold leading-none border border-slate-200/50 dark:border-slate-700/50 hover:border-govblue-200/50 dark:hover:border-govblue-500/50 transition-all duration-300 cursor-pointer"
               title="Change Language / भाषा बदलें"
             >
               <Globe className="w-4 h-4 animate-spin-slow text-slate-500 dark:text-slate-400" />
@@ -136,16 +135,16 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-4">
                 <Link
                   to="/login"
-                  className="px-4.5 py-2 text-sm font-semibold text-slate-700 hover:text-govblue-600 transition-all"
+                  className="inline-flex items-center justify-center px-4.5 py-2 text-lg font-bold leading-none text-slate-700 hover:text-govblue-600 transition-all"
                 >
                   {t('login')}
                 </Link>
                 <Link
                   to="/register"
-                  className="px-4.5 py-2 text-sm font-semibold text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md shadow-govblue-100 hover:shadow-lg transition-all duration-300"
+                  className="inline-flex items-center justify-center px-5 py-2 text-lg font-bold leading-none text-white bg-govblue-600 hover:bg-govblue-700 rounded-xl shadow-md shadow-govblue-100 hover:shadow-lg transition-all duration-300"
                 >
                   {t('signup')}
                 </Link>

@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    background-color: #e8edf2;
+    background-color: #f7f8f6;
     @apply dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased overflow-x-hidden transition-colors duration-300;
   }
 }
@@ -68,11 +68,11 @@ body.lang-hi p, body.lang-hi h1, body.lang-hi h2, body.lang-hi h3, body.lang-hi 
 
   /* Custom Gradients */
   .bg-gradient-gov {
-    background: linear-gradient(135deg, #1064a3 0%, #0f5083 50%, #123b5c 100%);
+    background: linear-gradient(135deg, #118117 0%, #136519 50%, #0a3718 100%);
   }
 
   .bg-gradient-benefit {
-    background: linear-gradient(135deg, #38b95f 0%, #23783e 100%);
+    background: linear-gradient(135deg, #d43684 0%, #a51759 100%);
   }
 
   .bg-gradient-light {
@@ -91,7 +91,7 @@ body.lang-hi p, body.lang-hi h1, body.lang-hi h2, body.lang-hi h3, body.lang-hi 
 
 /* Timeline Custom Connectors */
 .timeline-line {
-  background: linear-gradient(to bottom, #1d7fc4 50%, #e2e8f0 50%);
+  background: linear-gradient(to bottom, #09ad09 50%, #e2e8f0 50%);
   background-size: 100% 200%;
   background-position: bottom;
   transition: background-position 0.5s ease;

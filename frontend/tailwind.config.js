@@ -8,31 +8,47 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Redefined govblue to act as the primary Bright/Dark Green theme
         govblue: {
-          50: '#f0f6fc',
-          100: '#e1eef9',
-          200: '#bcdcf3',
-          300: '#83bde9',
-          400: '#439adb',
-          500: '#1d7fc4',
-          600: '#1064a3',
-          700: '#0f5083',
-          800: '#10456e',
-          900: '#123b5c',
-          950: '#0c263e',
+          50: '#f0fcf1',
+          100: '#dbf8df',
+          200: '#baf0c2',
+          300: '#87e394',
+          400: '#4bcc5d',
+          500: '#21b537',
+          600: '#09ad09', // Primary Bright Green
+          700: '#118117',
+          800: '#136519',
+          900: '#0a3718', // Primary Dark Green
+          950: '#06200d',
         },
+        // Redefined govgreen to act as the secondary Pink/Magenta theme
         govgreen: {
-          50: '#f2fcf5',
-          100: '#e2fae9',
-          200: '#c5f3d3',
-          300: '#97e8af',
-          400: '#5ed481',
-          500: '#38b95f',
-          600: '#29994b',
-          700: '#23783e',
-          800: '#205f34',
-          900: '#1c4e2d',
-          950: '#0b2b15',
+          50: '#fdf2f8',
+          100: '#fbe6f2',
+          200: '#f8cbe4',
+          300: '#f2a2cd',
+          400: '#e86baf',
+          500: '#d43684', // Primary Pink/Magenta
+          600: '#c1216d',
+          700: '#a51759',
+          800: '#89164c',
+          900: '#721641',
+          950: '#450924',
+        },
+        // Custom Grey overriding slate to match #696d62
+        slate: {
+          50: '#f7f8f6',
+          100: '#edf0ec',
+          200: '#d7dad3',
+          300: '#b8beb3',
+          400: '#949b8e',
+          500: '#767e6f',
+          600: '#696d62', // Target Grey
+          700: '#4e554a',
+          800: '#40453d',
+          900: '#363933',
+          950: '#1d1f1c',
         }
       },
       fontFamily: {

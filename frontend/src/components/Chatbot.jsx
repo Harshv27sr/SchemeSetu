@@ -10,7 +10,7 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
-  
+
   const { schemes, language } = useAuth();
 
   // Initial welcome message
@@ -20,8 +20,8 @@ const Chatbot = () => {
         {
           id: 1,
           type: 'bot',
-          text: language === 'hi' 
-            ? "नमस्ते! 🙏 मैं सेतु दूत, आपका एआई सहायक हूं। मुझे अपने बारे में बताएं (जैसे 'मैं राजस्थान से 22 वर्षीय SC छात्र हूं') और मैं आपके लिए सर्वोत्तम योजनाएं खोजूंगा!" 
+          text: language === 'hi'
+            ? "नमस्ते! 🙏 मैं सेतु दूत, आपका एआई सहायक हूं। मुझे अपने बारे में बताएं (जैसे 'मैं राजस्थान से 22 वर्षीय SC छात्र हूं') और मैं आपके लिए सर्वोत्तम योजनाएं खोजूंगा!"
             : "Namaste! 🙏 I am Setu Doot, your AI assistant. Tell me about yourself (e.g. 'I am a 22 year old SC student from Rajasthan') and I will find the best schemes for you!",
           time: new Date()
         }
@@ -37,7 +37,7 @@ const Chatbot = () => {
   // Smart Heuristic AI Logic (Simulated NLP)
   const processMessage = (userText) => {
     const text = userText.toLowerCase();
-    
+
     // Extract parameters
     let matchedCategory = "All";
     let matchedState = "All";
@@ -77,7 +77,7 @@ const Chatbot = () => {
       let sMatch = scheme.state === 'Central' || scheme.state === matchedState || scheme.eligibility?.allowedStates?.includes('All');
       let cMatch = scheme.eligibility?.allowedCategories?.includes(matchedCategory) || scheme.eligibility?.allowedCategories?.includes('All') || scheme.eligibility?.allowedCategories?.includes('SC/ST');
       let oMatch = scheme.eligibility?.allowedOccupations?.includes(matchedOccupation) || scheme.eligibility?.allowedOccupations?.includes('All');
-      
+
       // Bonus: If user mentions 'women' or 'girl'
       if ((text.includes("women") || text.includes("girl") || text.includes("female")) && scheme.eligibility?.allowedGenders?.includes('Male') && !scheme.eligibility?.allowedGenders?.includes('Female')) {
         return false;
@@ -126,7 +126,7 @@ const Chatbot = () => {
     }]);
     setInput('');
     setIsTyping(true);
-    
+
     // Process after slight delay to simulate network
     setTimeout(() => {
       processMessage(userMsg);
@@ -176,17 +176,17 @@ const Chatbot = () => {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ 
-              opacity: 1, 
+            animate={{
+              opacity: 1,
               y: isMinimized ? 'calc(100% - 60px)' : 0,
-              scale: 1 
+              scale: 1
             }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
             className="fixed bottom-6 right-6 w-[350px] sm:w-[400px] h-[550px] max-h-[85vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200/60 dark:border-white/10 flex flex-col overflow-hidden z-50"
           >
             {/* Header */}
-            <div 
+            <div
               onClick={() => setIsMinimized(!isMinimized)}
               className="px-4 py-3 bg-gradient-to-r from-govblue-700 to-govblue-600 cursor-pointer flex justify-between items-center"
             >
@@ -220,7 +220,7 @@ const Chatbot = () => {
               <div className="text-center text-[10px] text-slate-400 dark:text-slate-500 font-medium mb-4 uppercase tracking-wider">
                 Today
               </div>
-              
+
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'} items-end space-x-2`}>
                   {msg.type === 'bot' && (
@@ -228,12 +228,11 @@ const Chatbot = () => {
                       <Bot className="w-3.5 h-3.5 text-govblue-600 dark:text-govblue-400" />
                     </div>
                   )}
-                  
-                  <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
-                    msg.type === 'user' 
-                      ? 'bg-govblue-600 text-white rounded-br-sm' 
+
+                  <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${msg.type === 'user'
+                      ? 'bg-govblue-600 text-white rounded-br-sm'
                       : 'bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-white/5 text-slate-700 dark:text-slate-300 rounded-bl-sm shadow-sm'
-                  }`}>
+                    }`}>
                     <div className="whitespace-pre-wrap leading-relaxed">{msg.type === 'bot' ? parseMarkup(msg.text) : msg.text}</div>
                     <div className={`text-[9px] mt-1 text-right ${msg.type === 'user' ? 'text-govblue-200' : 'text-slate-400'}`}>
                       {msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

@@ -49,7 +49,7 @@ function App() {
     <Router>
       <AuthProvider>
         <RouteTranslator />
-        <div className="flex flex-col min-h-screen bg-[#e8edf2] dark:bg-slate-950 transition-colors duration-300">
+        <div className="flex flex-col min-h-screen bg-[#f7f8f6] dark:bg-slate-950 transition-colors duration-300">
           <Navbar />
 
           
