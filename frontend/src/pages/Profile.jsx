@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import { User, Calendar, MapPin, Users, Briefcase, IndianRupee, GraduationCap, Accessibility, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 const Profile = () => {
   const { user, updateProfile, t } = useAuth();
+  const navigate = useNavigate();
   
   // Local form states, prefilled from user profile
   const [fullName, setFullName] = useState('');
@@ -82,9 +84,12 @@ const Profile = () => {
     const res = await updateProfile(profileData);
     setSaving(false);
     if (res.success) {
-      setSuccessMsg('✅ Profile parameters successfully saved to MERN database! Schemes recalculated.');
+      setSuccessMsg('✅ Profile parameters successfully saved to MERN database! Redirecting to Dashboard...');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setTimeout(() => setSuccessMsg(''), 4000);
+      setTimeout(() => {
+        setSuccessMsg('');
+        navigate('/dashboard');
+      }, 1500);
     }
   };
 

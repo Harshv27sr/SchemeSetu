@@ -63,10 +63,6 @@ const Dashboard = () => {
       <div className="bg-gradient-gov text-white rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/50 dark:shadow-none mb-8 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
         <div className="relative z-10 space-y-2">
-          <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-white/10 rounded-full text-xs font-bold uppercase tracking-wider text-govgreen-300">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>AI recommendation engine active</span>
-          </div>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
             Namaste, {user?.name || "Citizen"}!
           </h1>
