@@ -103,6 +103,7 @@ export const updateUserProfile = async (req, res) => {
       if (req.body) {
         user.profile = {
           fullName: req.body.fullName || user.profile.fullName,
+          dob: req.body.dob || user.profile.dob,
           age: req.body.age !== undefined ? req.body.age : user.profile.age,
           gender: req.body.gender || user.profile.gender,
           state: req.body.state || user.profile.state,
@@ -110,7 +111,16 @@ export const updateUserProfile = async (req, res) => {
           occupation: req.body.occupation || user.profile.occupation,
           income: req.body.income !== undefined ? req.body.income : user.profile.income,
           education: req.body.education || user.profile.education,
-          disabilityStatus: req.body.disabilityStatus !== undefined ? req.body.disabilityStatus : user.profile.disabilityStatus
+          disabilityStatus: req.body.disabilityStatus !== undefined ? req.body.disabilityStatus : user.profile.disabilityStatus,
+          isAadhaarVerified: req.body.isAadhaarVerified !== undefined ? req.body.isAadhaarVerified : user.profile.isAadhaarVerified,
+          bpl: req.body.bpl !== undefined ? req.body.bpl : user.profile.bpl,
+          minority: req.body.minority !== undefined ? req.body.minority : user.profile.minority,
+          locationType: req.body.locationType || user.profile.locationType,
+          employmentType: req.body.employmentType || user.profile.employmentType,
+          dependents: req.body.dependents !== undefined ? req.body.dependents : user.profile.dependents,
+          familyMembers: req.body.familyMembers !== undefined ? req.body.familyMembers : user.profile.familyMembers,
+          singleParent: req.body.singleParent !== undefined ? req.body.singleParent : user.profile.singleParent,
+          sectorPreference: req.body.sectorPreference || user.profile.sectorPreference
         };
       }
 

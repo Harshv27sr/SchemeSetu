@@ -62,7 +62,7 @@ const Profile = () => {
   useEffect(() => {
     if (user && user.profile) {
       const prof = user.profile;
-      setFullName(prof.fullName || user.name || '');
+      setFullName(prof.fullName || '');
       setDob(prof.dob || '');
       setAge(prof.age || '');
       setGender(prof.gender || '');

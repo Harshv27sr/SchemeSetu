@@ -119,35 +119,6 @@ const Login = () => {
           </div>
         </form>
 
-        {/* Quick Login Buttons */}
-        <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl space-y-3">
-          <div className="flex items-center space-x-1.5 text-xs font-bold text-govblue-800 dark:text-govblue-400">
-            <ShieldCheck className="w-4 h-4 text-govblue-600 dark:text-govblue-450" />
-            <span>Quick Login (Demo Accounts):</span>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('rahul@gmail.com');
-                setPassword('password123');
-              }}
-              className="py-2 text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
-            >
-              👨‍💼 Citizen Login
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('admin@schemesetu.gov.in');
-                setPassword('admin123');
-              }}
-              className="py-2 text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
-            >
-              🛠 Admin Login
-            </button>
-          </div>
-        </div>
 
         <div className="text-center pt-2 text-sm text-slate-500 dark:text-slate-400">
           Don't have a citizen profile?{" "}
