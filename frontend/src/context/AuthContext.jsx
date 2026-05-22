@@ -3,7 +3,12 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api';
+// Safely parse the API URL to prevent duplicate /api/api bugs
+let rawUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Remove any trailing slashes and trailing /api to normalize it
+if (rawUrl.endsWith('/')) rawUrl = rawUrl.slice(0, -1);
+if (rawUrl.endsWith('/api')) rawUrl = rawUrl.slice(0, -4);
+const API_URL = rawUrl + '/api';
 
 // Core translation strings for English and Hindi
 const translations = {
