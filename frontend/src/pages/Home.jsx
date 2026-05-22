@@ -154,12 +154,12 @@ const Home = () => {
       <section className="py-20 lg:py-28 bg-transparent dark:bg-slate-950/40 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 className="text-xs font-bold text-govblue-600 dark:text-govblue-400 tracking-widest uppercase">Core Capabilities</h2>
+            <h2 className="text-xs font-bold text-govblue-600 dark:text-govblue-400 tracking-widest uppercase">{t('coreCapabilities')}</h2>
             <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Powerful Features Made for Citizens
+              {t('powerfulFeatures')}
             </p>
             <p className="text-sm text-slate-500 dark:text-slate-400">
-              Eliminating barriers of red tape, confusion, and complexity. Find, check, and track your claims instantly.
+              {t('powerfulFeaturesSub')}
             </p>
           </div>
 
@@ -175,9 +175,9 @@ const Home = () => {
               <div className="w-12 h-12 rounded-xl bg-govblue-50 dark:bg-govblue-900/20 text-govblue-600 dark:text-govblue-400 flex items-center justify-center mb-6 font-bold">
                 <Search className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Recommendation Engine</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('recEngine')}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Matches your profile filters (age, income, state, category) directly to active state and central benefits in real-time.
+                {t('recEngineDesc')}
               </p>
             </motion.div>
 
@@ -186,9 +186,9 @@ const Home = () => {
               <div className="w-12 h-12 rounded-xl bg-govgreen-50 dark:bg-govgreen-900/20 text-govgreen-600 dark:text-govgreen-400 flex items-center justify-center mb-6 font-bold">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Eligibility Checker</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('eligibilityChecker')}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Calculates a transparent eligibility score based on dynamic parameter checks, with detailed explanations.
+                {t('eligibilityCheckerDesc')}
               </p>
             </motion.div>
 
@@ -197,9 +197,9 @@ const Home = () => {
               <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-6 font-bold">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">OCR Document Validation</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('ocrValidation')}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Harnesses OCR validation to read certificates and proactively alert users on critical spelling or birthdate mismatches.
+                {t('ocrValidationDesc')}
               </p>
             </motion.div>
 
@@ -208,9 +208,9 @@ const Home = () => {
               <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 font-bold">
                 <FileText className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Application Tracking</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('appTracking')}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Keeps application statuses updated with a comprehensive timeline UI mapping each verification stage.
+                {t('appTrackingDesc')}
               </p>
             </motion.div>
           </motion.div>
@@ -221,12 +221,12 @@ const Home = () => {
       <section className="py-20 lg:py-28 bg-slate-50/60 dark:bg-slate-900/30 border-y border-slate-200/60 dark:border-white/5 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-20 space-y-3">
-            <h2 className="text-xs font-bold text-govgreen-600 dark:text-govgreen-400 tracking-widest uppercase">Simplifying Bureaucracy</h2>
+            <h2 className="text-xs font-bold text-govgreen-600 dark:text-govgreen-400 tracking-widest uppercase">{t('simplifyingBureaucracy')}</h2>
             <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              A 5-Step Digital Assistance Flow
+              {t('fiveStepFlow')}
             </p>
             <p className="text-sm text-slate-500 dark:text-slate-400">
-              Applying for benefits has never been this direct. We guide you through verification, file uploads, and approval.
+              {t('fiveStepFlowSub')}
             </p>
           </div>
 
@@ -237,8 +237,8 @@ const Home = () => {
                 1
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">Register Securely</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Sign up and protect your credentials with JWT authorization.</p>
+              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step1Title')}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step1Desc')}</p>
             </div>
 
             {/* Step 2 */}
@@ -247,8 +247,8 @@ const Home = () => {
                 2
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">Fill Citizen Profile</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Enter age, state, caste, and income parameters for automated matching.</p>
+              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step2Title')}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step2Desc')}</p>
             </div>
 
             {/* Step 3 */}
@@ -257,8 +257,8 @@ const Home = () => {
                 3
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">Review Schemes</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Compare customized score recommendations and check match explanations.</p>
+              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step3Title')}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step3Desc')}</p>
             </div>
 
             {/* Step 4 */}
@@ -267,8 +267,8 @@ const Home = () => {
                 4
                 <div className="hidden lg:block absolute left-full top-1/2 w-[70%] h-[2px] bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">OCR Mismatch Scan</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Upload documents and let OCR detect any typos before submission.</p>
+              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step4Title')}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step4Desc')}</p>
             </div>
 
             {/* Step 5 */}
@@ -276,8 +276,8 @@ const Home = () => {
               <div className="w-14 h-14 bg-govgreen-600 text-white rounded-full flex items-center justify-center font-extrabold text-lg shadow-lg shadow-govgreen-200/40 dark:shadow-none mb-6">
                 5
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">Track & Succeed</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Submit to the Admin desk and monitor the timeline status dynamically.</p>
+              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-2">{t('step5Title')}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{t('step5Desc')}</p>
             </div>
           </div>
         </div>
@@ -356,16 +356,16 @@ const Home = () => {
       <section className="bg-gradient-gov py-16 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-extrabold">Ready to Discover Your Eligible Benefits?</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold">{t('readyToDiscover')}</h2>
           <p className="text-sm sm:text-base text-govblue-100 max-w-lg mx-auto">
-            Take 2 minutes to fill your parameters. Find your matching schemes and secure your eligible assistance today.
+            {t('takeTwoMins')}
           </p>
           <div className="pt-2">
             <Link
               to="/register"
               className="inline-block px-8 py-3.5 bg-govgreen-500 hover:bg-govgreen-600 text-white font-bold rounded-xl shadow-lg transition-all duration-300 cursor-pointer"
             >
-              Get Started for Free
+              {t('getStartedFree')}
             </Link>
           </div>
         </div>

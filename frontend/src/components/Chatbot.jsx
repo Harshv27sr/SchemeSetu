@@ -11,7 +11,7 @@ const Chatbot = () => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   
-  const { schemes } = useAuth();
+  const { schemes, language } = useAuth();
 
   // Initial welcome message
   useEffect(() => {
@@ -20,12 +20,14 @@ const Chatbot = () => {
         {
           id: 1,
           type: 'bot',
-          text: "Namaste! 🙏 I am Setu Doot, your AI assistant. Tell me about yourself (e.g. 'I am a 22 year old SC student from Rajasthan') and I will find the best schemes for you!",
+          text: language === 'hi' 
+            ? "नमस्ते! 🙏 मैं सेतु दूत, आपका एआई सहायक हूं। मुझे अपने बारे में बताएं (जैसे 'मैं राजस्थान से 22 वर्षीय SC छात्र हूं') और मैं आपके लिए सर्वोत्तम योजनाएं खोजूंगा!" 
+            : "Namaste! 🙏 I am Setu Doot, your AI assistant. Tell me about yourself (e.g. 'I am a 22 year old SC student from Rajasthan') and I will find the best schemes for you!",
           time: new Date()
         }
       ]);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, language]);
 
   // Auto scroll to bottom
   useEffect(() => {
@@ -88,9 +90,17 @@ const Chatbot = () => {
     setTimeout(() => {
       let replyText = "";
       if (recommendations.length > 0) {
-        replyText = `Based on what you told me (State: **${matchedState}**, Category: **${matchedCategory}**, Occupation: **${matchedOccupation}**), I found **${recommendations.length}** highly suitable schemes for you!\n\nTop recommendations:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nYou can apply for these in the Schemes portal!`;
+        if (language === 'hi') {
+          replyText = `आपके द्वारा बताई गई जानकारी के आधार पर (राज्य: **${matchedState}**, श्रेणी: **${matchedCategory}**, व्यवसाय: **${matchedOccupation}**), मुझे आपके लिए **${recommendations.length}** अत्यधिक उपयुक्त योजनाएं मिली हैं!\n\nशीर्ष सिफारिशें:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nआप योजना पोर्टल में इनके लिए आवेदन कर सकते हैं!`;
+        } else {
+          replyText = `Based on what you told me (State: **${matchedState}**, Category: **${matchedCategory}**, Occupation: **${matchedOccupation}**), I found **${recommendations.length}** highly suitable schemes for you!\n\nTop recommendations:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nYou can apply for these in the Schemes portal!`;
+        }
       } else {
-        replyText = `I analyzed your profile (State: ${matchedState}, Category: ${matchedCategory}). Currently, I don't see an exact match, but you should check the "Central Schemes" in the explorer which apply to everyone!`;
+        if (language === 'hi') {
+          replyText = `मैंने आपकी प्रोफ़ाइल (राज्य: ${matchedState}, श्रेणी: ${matchedCategory}) का विश्लेषण किया है। वर्तमान में, मुझे कोई सटीक मेल नहीं मिला है, लेकिन आपको एक्सप्लोरर में "केंद्रीय योजनाएं" देखनी चाहिए जो सभी पर लागू होती हैं!`;
+        } else {
+          replyText = `I analyzed your profile (State: ${matchedState}, Category: ${matchedCategory}). Currently, I don't see an exact match, but you should check the "Central Schemes" in the explorer which apply to everyone!`;
+        }
       }
 
       setMessages(prev => [...prev, {
@@ -127,7 +137,7 @@ const Chatbot = () => {
     setMessages([{
       id: Date.now(),
       type: 'bot',
-      text: "Chat reset! How else can I assist you today?",
+      text: language === 'hi' ? "चैट रीसेट हो गई! मैं आज आपकी और क्या सहायता कर सकता हूँ?" : "Chat reset! How else can I assist you today?",
       time: new Date()
     }]);
   };
@@ -262,7 +272,7 @@ const Chatbot = () => {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type 'student from up'..."
+                  placeholder={language === 'hi' ? "लिखें 'rajasthan se student'..." : "Type 'student from up'..."}
                   className="flex-1 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-govblue-500 focus:ring-1 focus:ring-govblue-500 text-slate-800 dark:text-slate-200 placeholder:text-slate-400"
                   disabled={isTyping}
                 />
