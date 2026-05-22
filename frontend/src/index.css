@@ -11,6 +11,12 @@
   }
 }
 
+/* Hide Google Translate Banner and popup */
+.goog-te-banner-frame { display: none !important; }
+body { top: 0 !important; position: static !important; }
+.skiptranslate > iframe { display: none !important; }
+#goog-gt-tt { display: none !important; }
+
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;

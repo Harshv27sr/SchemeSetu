@@ -9,7 +9,21 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'hi' : 'en');
+    const newLang = language === 'en' ? 'hi' : 'en';
+    setLanguage(newLang);
+    
+    // Trigger Google Translate
+    setTimeout(() => {
+      try {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+          select.value = newLang;
+          select.dispatchEvent(new Event('change'));
+        }
+      } catch (e) {
+        console.error("Google Translate error:", e);
+      }
+    }, 100);
   };
 
   const handleLogout = () => {
