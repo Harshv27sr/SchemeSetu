@@ -148,70 +148,62 @@ const Home = () => {
       </section>
 
 
-      {/* Features Grid */}
-      <section className="py-20 lg:py-28 relative bg-transparent dark:bg-slate-900 transition-colors">
-        {/* Subtle grid pattern overlay for dark mode */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMjBoMjBWMEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ0iTTAgMTkuNWgyMHYxaC0yMHptMTkuNSAwdjFoLTF2LTF6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9zdmc+')] dark:opacity-100 opacity-0 pointer-events-none"></div>
+      {/* Stats Section — myScheme style */}
+      <section className="py-16 lg:py-20 bg-[#1a2332] dark:bg-[#111827]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 className="text-sm font-bold text-govblue-600 dark:text-govblue-400 tracking-widest uppercase">{t('coreCapabilities')}</h2>
-            <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              {t('powerfulFeatures')}
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              {t('powerfulFeaturesSub')}
-            </p>
+          {/* Find Schemes CTA */}
+          <div className="text-center mb-12">
+            <Link
+              to="/schemes"
+              className="inline-flex items-center space-x-2 px-8 py-3.5 bg-govgreen-600 hover:bg-govgreen-700 text-white font-bold rounded-lg shadow-lg shadow-govgreen-900/30 transition-all duration-300 cursor-pointer text-base"
+            >
+              <span>Find Schemes For You</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
 
+          {/* Stats Cards */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
           >
-            {/* Feature 1 */}
-            <motion.div className="bg-slate-50/90 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all duration-300" variants={itemVariants}>
-              <div className="w-12 h-12 rounded-xl bg-govblue-50 dark:bg-govblue-900/20 text-govblue-600 dark:text-govblue-400 flex items-center justify-center mb-6 font-bold">
-                <Search className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('recEngine')}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {t('recEngineDesc')}
-              </p>
+            <motion.div variants={itemVariants}>
+              <Link to="/schemes" className="block group">
+                <div className="bg-[#1e293b] hover:bg-[#243044] border border-slate-700/50 hover:border-slate-600/60 rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer">
+                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">4700+</h3>
+                  <p className="text-sm text-slate-400 font-medium flex items-center justify-center space-x-1 group-hover:text-slate-300 transition-colors">
+                    <span>Total Schemes</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </p>
+                </div>
+              </Link>
             </motion.div>
 
-            {/* Feature 2 */}
-            <motion.div className="bg-slate-50/90 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all duration-300" variants={itemVariants}>
-              <div className="w-12 h-12 rounded-xl bg-govgreen-50 dark:bg-govgreen-900/20 text-govgreen-600 dark:text-govgreen-400 flex items-center justify-center mb-6 font-bold">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('eligibilityChecker')}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {t('eligibilityCheckerDesc')}
-              </p>
+            <motion.div variants={itemVariants}>
+              <Link to="/schemes" className="block group">
+                <div className="bg-[#1e293b] hover:bg-[#243044] border border-slate-700/50 hover:border-slate-600/60 rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer">
+                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">680+</h3>
+                  <p className="text-sm text-slate-400 font-medium flex items-center justify-center space-x-1 group-hover:text-slate-300 transition-colors">
+                    <span>Central Schemes</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </p>
+                </div>
+              </Link>
             </motion.div>
 
-            {/* Feature 3 */}
-            <motion.div className="bg-slate-50/90 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all duration-300" variants={itemVariants}>
-              <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-6 font-bold">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('ocrValidation')}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {t('ocrValidationDesc')}
-              </p>
-            </motion.div>
-
-            {/* Feature 4 */}
-            <motion.div className="bg-slate-50/90 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-md dark:hover:border-white/10 transition-all duration-300" variants={itemVariants}>
-              <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 font-bold">
-                <FileText className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('appTracking')}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {t('appTrackingDesc')}
-              </p>
+            <motion.div variants={itemVariants}>
+              <Link to="/schemes" className="block group">
+                <div className="bg-[#1e293b] hover:bg-[#243044] border border-slate-700/50 hover:border-slate-600/60 rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer">
+                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">4020+</h3>
+                  <p className="text-sm text-slate-400 font-medium flex items-center justify-center space-x-1 group-hover:text-slate-300 transition-colors">
+                    <span>States/UTs Schemes</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </p>
+                </div>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
