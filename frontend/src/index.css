@@ -33,7 +33,7 @@ body.lang-hi p, body.lang-hi h1, body.lang-hi h2, body.lang-hi h3, body.lang-hi 
   word-break: break-word;
 }
 
-/* Custom Scrollbars */
+/* Custom Scrollbars — @apply hata ke plain CSS kiya */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -42,7 +42,12 @@ body.lang-hi p, body.lang-hi h1, body.lang-hi h2, body.lang-hi h3, body.lang-hi 
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-govblue-300 rounded-full hover:bg-govblue-400 transition-colors;
+  background-color: #93c5fd;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #60a5fa;
 }
 
 @layer components {
@@ -130,7 +135,7 @@ body.lang-hi p, body.lang-hi h1, body.lang-hi h2, body.lang-hi h3, body.lang-hi 
   background-position: top;
 }
 
-/* Autofill styling overrides to eliminate browser yellow/blue backgrounds and glare */
+/* Autofill styling overrides */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
