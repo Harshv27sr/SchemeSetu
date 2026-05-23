@@ -1007,6 +1007,7 @@ useEffect(() => {
     const reasons = [];
     let matches = 0;
     let totalChecks = 6; // age, income, occupation, category, state, gender
+    let strictFail = false;
 
     // 1. Age
     const age = prof.age || 0;
@@ -1015,6 +1016,7 @@ useEffect(() => {
       matches++;
     } else {
       reasons.push({ matched: false, text: `${t('ageMismatch')}${crit.minAge}-${crit.maxAge})` });
+      strictFail = true;
     }
 
     // 2. Income
@@ -1024,6 +1026,7 @@ useEffect(() => {
       matches++;
     } else {
       reasons.push({ matched: false, text: `${t('incomeMismatch')}${crit.maxIncome.toLocaleString()}` });
+      strictFail = true;
     }
 
     // 3. Occupation
@@ -1049,6 +1052,7 @@ useEffect(() => {
       matches++;
     } else {
       reasons.push({ matched: false, text: t('categoryMismatch') });
+      strictFail = true;
     }
 
     // 5. State
@@ -1058,6 +1062,7 @@ useEffect(() => {
       matches++;
     } else {
       reasons.push({ matched: false, text: t('stateMismatch') });
+      strictFail = true;
     }
 
     // 6. Gender
@@ -1067,6 +1072,7 @@ useEffect(() => {
       matches++;
     } else {
       reasons.push({ matched: false, text: "Scheme not available for selected gender" });
+      strictFail = true;
     }
 
     // 7. Special Categories (Disability / Widow)
@@ -1082,13 +1088,21 @@ useEffect(() => {
         matches++;
       } else {
         reasons.push({ matched: false, text: "Scheme restricted to special categories (e.g. Widow, Disabled)" });
+        strictFail = true;
       }
     }
 
-    const score = Math.round((matches / totalChecks) * 100);
+    let score = Math.round((matches / totalChecks) * 100);
     let status = 'Not Eligible';
-    if (score === 100) status = 'Eligible';
-    else if (score >= 50) status = 'Partially Eligible';
+    
+    if (strictFail) {
+      score = 0;
+      status = 'Not Eligible';
+    } else if (score === 100) {
+      status = 'Eligible';
+    } else if (score >= 50) {
+      status = 'Partially Eligible';
+    }
 
     return { status, score, reasons };
   };
