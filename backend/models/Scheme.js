@@ -39,7 +39,8 @@ const SchemeSchema = new mongoose.Schema({
     allowedOccupations: [{ type: String, default: ["All"] }],
     allowedCategories: [{ type: String, default: ["All"] }],
     allowedStates: [{ type: String, default: ["All"] }],
-    allowedGenders: [{ type: String, default: ["All"] }]
+    allowedGenders: [{ type: String, default: ["All"] }],
+    targetSpecialCategories: [{ type: String }]
   }
 }, {
   timestamps: true

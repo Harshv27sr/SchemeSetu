@@ -12,7 +12,7 @@ const Schemes = () => {
   const [stateFilter, setStateFilter] = useState('All');
   const [casteFilter, setCasteFilter] = useState('All');
 
-  const FILTER_CATEGORIES = ["All", "Student", "Farmer", "Women", "Pension", "Startup"];
+  const FILTER_CATEGORIES = ["All", "Student", "Farmer", "Labourer", "Women", "Widow", "Disabled", "Pension", "Startup"];
   const FILTER_STATES = ["All", "Central", "Rajasthan", "Uttar Pradesh", "Maharashtra"];
   const FILTER_CASTES = ["All", "SC", "ST", "OBC", "General"];
 
@@ -29,6 +29,10 @@ const Schemes = () => {
       const allowedOcc = scheme.eligibility?.allowedOccupations || [];
       if (categoryFilter === 'Women') {
         categoryMatch = scheme.eligibility?.allowedGenders?.includes('Female');
+      } else if (categoryFilter === 'Widow') {
+        categoryMatch = scheme.eligibility?.targetSpecialCategories?.includes('Widow') || scheme.title.toLowerCase().includes('widow');
+      } else if (categoryFilter === 'Disabled') {
+        categoryMatch = scheme.eligibility?.targetSpecialCategories?.includes('Disabled') || scheme.title.toLowerCase().includes('divyang') || scheme.title.toLowerCase().includes('disable');
       } else if (categoryFilter === 'Pension') {
         categoryMatch = scheme.title.toLowerCase().includes('pension') || allowedOcc.includes('Retired');
       } else {

@@ -29,6 +29,7 @@ const Profile = () => {
   const [familyMembers, setFamilyMembers] = useState('');
   
   const [disabilityStatus, setDisabilityStatus] = useState(false);
+  const [widow, setWidow] = useState(false);
   const [singleParent, setSingleParent] = useState(false);
   
   const [sectorPreference, setSectorPreference] = useState('');
@@ -53,7 +54,7 @@ const Profile = () => {
   ];
 
   const CATEGORIES = ["General", "OBC", "SC", "ST"];
-  const OCCUPATIONS = ["Student", "Farmer", "Business Owner", "Unemployed", "Retired", "Others"];
+  const OCCUPATIONS = ["Student", "Farmer", "Labourer", "Business Owner", "Unemployed", "Retired", "Others"];
   const GENDERS = ["Male", "Female", "Other"];
   const EMPLOYMENT_TYPES = ["Full-time", "Part-time", "Self-employed", "Unemployed", "Daily Wager"];
   const SECTORS = ["Agriculture", "Education", "Healthcare", "Housing", "Women Empowerment", "Small Business"];
@@ -82,6 +83,7 @@ const Profile = () => {
       setFamilyMembers(prof.familyMembers || '');
       
       setDisabilityStatus(prof.disabilityStatus || false);
+      setWidow(prof.widow || false);
       setSingleParent(prof.singleParent || false);
       
       setSectorPreference(prof.sectorPreference || '');
@@ -132,6 +134,7 @@ const Profile = () => {
       familyMembers: parseInt(familyMembers) || 1,
       education,
       disabilityStatus,
+      widow,
       singleParent,
       sectorPreference,
       isAadhaarVerified
@@ -505,6 +508,21 @@ const Profile = () => {
               <label className="inline-flex items-center space-x-2 text-sm font-bold text-slate-700 dark:text-slate-350 cursor-pointer select-none">
                 <input type="checkbox" checked={singleParent} onChange={(e) => setSingleParent(e.target.checked)} className="w-4 h-4 accent-govblue-600 rounded cursor-pointer" />
                 <span>I am a Single Parent</span>
+              </label>
+            </div>
+          </div>
+          <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl flex items-start space-x-3.5">
+            <div className="p-2 bg-fuchsia-50 dark:bg-fuchsia-950/20 rounded-xl text-fuchsia-600 dark:text-fuchsia-400 mt-0.5">
+              <User className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">Widow Status</h3>
+              <p className="text-sm text-slate-400 dark:text-slate-400 leading-normal mb-3">
+                Check this box if you are a widow. This makes you eligible for specific national and state pension schemes.
+              </p>
+              <label className="inline-flex items-center space-x-2 text-sm font-bold text-slate-700 dark:text-slate-350 cursor-pointer select-none">
+                <input type="checkbox" checked={widow} onChange={(e) => setWidow(e.target.checked)} className="w-4 h-4 accent-govblue-600 rounded cursor-pointer" />
+                <span>I am a Widow</span>
               </label>
             </div>
           </div>

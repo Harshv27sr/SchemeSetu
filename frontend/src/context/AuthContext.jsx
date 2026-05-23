@@ -393,6 +393,65 @@ const DEFAULT_SCHEMES = [
       allowedStates: ["All"],
       allowedGenders: ["Male", "Female", "Other"]
     }
+  },
+  {
+    _id: "scheme_widow_pension",
+    title: "National Widow Pension Scheme (NWPS)",
+    description: "Financial assistance provided to widows to ensure a dignified life and cover basic living expenses.",
+    benefits: "Monthly pension of ₹3,000 transferred directly to the beneficiary's bank account.",
+    state: "Central",
+    category: "Widow",
+    deadline: "2026-12-31",
+    requiredDocuments: ["Aadhaar Card", "Death Certificate of Husband", "Income Certificate"],
+    eligibility: {
+      minAge: 18,
+      maxAge: 99,
+      maxIncome: 200000,
+      allowedOccupations: ["All"],
+      allowedCategories: ["General", "OBC", "SC", "ST"],
+      allowedStates: ["All"],
+      allowedGenders: ["Female"],
+      targetSpecialCategories: ["Widow"]
+    }
+  },
+  {
+    _id: "scheme_shramik_kalyan",
+    title: "Shramik Kalyan Yojana",
+    description: "Comprehensive welfare scheme for unorganized sector labourers, providing health coverage and tool kits.",
+    benefits: "Free health insurance up to ₹5 Lakhs and a one-time grant of ₹10,000 for purchasing occupational tools.",
+    state: "Central",
+    category: "Labour",
+    deadline: "2026-10-31",
+    requiredDocuments: ["Aadhaar Card", "e-Shram Card", "Income Certificate"],
+    eligibility: {
+      minAge: 18,
+      maxAge: 60,
+      maxIncome: 150000,
+      allowedOccupations: ["Labourer", "Daily Wager"],
+      allowedCategories: ["General", "OBC", "SC", "ST"],
+      allowedStates: ["All"],
+      allowedGenders: ["Male", "Female", "Other"]
+    }
+  },
+  {
+    _id: "scheme_divyang_pension",
+    title: "Divyangjan Pension Scheme",
+    description: "Financial support for persons with disabilities (Divyangjan) to help them lead an independent life.",
+    benefits: "Monthly pension of ₹2,500 and free bus/train passes.",
+    state: "Central",
+    category: "Disabled",
+    deadline: "2027-03-31",
+    requiredDocuments: ["Aadhaar Card", "UDID Card (Disability Certificate)", "Income Certificate"],
+    eligibility: {
+      minAge: 0,
+      maxAge: 99,
+      maxIncome: 250000,
+      allowedOccupations: ["All"],
+      allowedCategories: ["General", "OBC", "SC", "ST"],
+      allowedStates: ["All"],
+      allowedGenders: ["Male", "Female", "Other"],
+      targetSpecialCategories: ["Disabled"]
+    }
   }
 ];
 
@@ -607,6 +666,22 @@ export const AuthProvider = ({ children }) => {
       matches++;
     } else {
       reasons.push({ matched: false, text: "Scheme not available for selected gender" });
+    }
+
+    // 7. Special Categories (Disability / Widow)
+    const specialCats = crit.targetSpecialCategories || [];
+    if (specialCats.length > 0) {
+      totalChecks++;
+      let isSpecialEligible = false;
+      if (specialCats.includes("Disabled") && prof.disabilityStatus) isSpecialEligible = true;
+      if (specialCats.includes("Widow") && prof.widow) isSpecialEligible = true;
+      
+      if (isSpecialEligible) {
+        reasons.push({ matched: true, text: "Special category criteria (Disabled/Widow) matched" });
+        matches++;
+      } else {
+        reasons.push({ matched: false, text: "Scheme restricted to special categories (e.g. Widow, Disabled)" });
+      }
     }
 
     const score = Math.round((matches / totalChecks) * 100);
