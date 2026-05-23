@@ -9,7 +9,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('Citizen');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -17,8 +17,13 @@ const Register = () => {
     e.preventDefault();
     setError('');
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !confirmPassword) {
       setError('Please fill in all fields');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
       return;
     }
 
@@ -27,13 +32,9 @@ const Register = () => {
       return;
     }
 
-    const res = await signup(name, email, password, role);
+    const res = await signup(name, email, password, 'Citizen');
     if (res.success) {
-      if (role === 'Admin') {
-        navigate('/admin');
-      } else {
-        navigate('/profile'); // Send them to fill details immediately! Highly intuitive user flow
-      }
+      navigate('/profile'); // Send them to fill details immediately! Highly intuitive user flow
     } else {
       setError(res.error || 'Registration failed');
     }
@@ -123,32 +124,22 @@ const Register = () => {
             </div>
           </div>
 
-          {/* Role selector field */}
+          {/* Confirm Password field */}
           <div className="space-y-1.5">
-            <label className="form-label">Select Account Type</label>
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setRole('Citizen')}
-                className={`py-2 px-4 rounded-xl border text-sm font-bold transition-all cursor-pointer ${
-                  role === 'Citizen'
-                    ? 'border-govblue-600 dark:border-govblue-400 bg-govblue-50 dark:bg-govblue-900/30 text-govblue-700 dark:text-govblue-300 shadow-sm'
-                    : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
-                }`}
-              >
-                Citizen (Applicant)
-              </button>
-              <button
-                type="button"
-                onClick={() => setRole('Admin')}
-                className={`py-2 px-4 rounded-xl border text-sm font-bold transition-all cursor-pointer ${
-                  role === 'Admin'
-                    ? 'border-govgreen-600 dark:border-govgreen-450 bg-govgreen-50 dark:bg-govgreen-900/30 text-govgreen-750 dark:text-govgreen-400 shadow-sm'
-                    : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
-                }`}
-              >
-                Admin (Officer)
-              </button>
+            <label className="form-label">Confirm Password</label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 dark:text-slate-500">
+                <Lock className="w-4.5 h-4.5" />
+              </span>
+              <input
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="form-input pl-10"
+                placeholder="Re-enter your password"
+                autoComplete="new-password"
+              />
             </div>
           </div>
 
