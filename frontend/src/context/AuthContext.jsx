@@ -744,6 +744,16 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('lang', language);
   }, [language]);
 
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    setIsAuthenticated(true);
+  }
+}, []);
+
   // Handle Theme Toggling on root document element
   useEffect(() => {
     const root = window.document.documentElement;
