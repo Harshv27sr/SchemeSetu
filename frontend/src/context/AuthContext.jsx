@@ -759,9 +759,10 @@ export const AuthProvider = ({ children }) => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  // Load schemes from backend (runs once)
+  // Load schemes + Restore session on page load (runs ONCE)
   useEffect(() => {
-    const loadSchemes = async () => {
+    const init = async () => {
+      // 1. Load schemes (always)
       try {
         const health = await axios.get(`${API_URL}/auth/health`);
         if (health.status === 200) {
@@ -773,21 +774,18 @@ export const AuthProvider = ({ children }) => {
         console.error("Backend connection error", err);
         setApiActive(false);
       }
-    };
-    loadSchemes();
-  }, []);
 
-  // Restore session on page load (runs once)
-  useEffect(() => {
-    const restoreSession = async () => {
+      // 2. Restore session if token exists
       const savedToken = localStorage.getItem('token');
       if (!savedToken) {
         setLoading(false);
         return;
       }
+
       try {
         const config = { headers: { Authorization: `Bearer ${savedToken}` } };
         const profileRes = await axios.get(`${API_URL}/auth/profile`, config);
+        // Token is valid — restore session
         setUser(profileRes.data);
         setToken(savedToken);
         axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
@@ -799,23 +797,28 @@ export const AuthProvider = ({ children }) => {
 
         try {
           const role = profileRes.data.role;
-          const ticketUrl = role === 'Admin' ? `${API_URL}/grievances/all` : `${API_URL}/grievances`;
+          const ticketUrl = role === 'Admin'
+            ? `${API_URL}/grievances/all`
+            : `${API_URL}/grievances`;
           const ticketRes = await axios.get(ticketUrl, config);
           setTickets(ticketRes.data);
         } catch (_) {}
 
       } catch (err) {
-        // Token expired or invalid - only clear if 401
+        // Only logout on explicit 401 (invalid/expired token)
         if (err.response?.status === 401) {
           localStorage.removeItem('token');
           setToken(null);
           setUser(null);
         }
+        // For network errors, keep user logged in
       } finally {
         setLoading(false);
       }
     };
-    restoreSession();
+
+    init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Translate helper function
@@ -825,16 +828,16 @@ export const AuthProvider = ({ children }) => {
 
   // Sign In
   const login = async (email, password) => {
-    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/auth/login`, { email, password });
-      setToken(res.data.token);
+      const newToken = res.data.token;
+      localStorage.setItem('token', newToken);
+      setToken(newToken);
       setUser(res.data.user);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
       return { success: true };
     } catch (err) {
       return { success: false, error: err.response?.data?.message || "Login failed" };
-    } finally {
-      setLoading(false);
     }
   };
 
