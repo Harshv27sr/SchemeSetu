@@ -9,6 +9,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [contextScheme, setContextScheme] = useState(null);
   const messagesEndRef = useRef(null);
 
   const { schemes, language } = useAuth();
@@ -21,8 +22,8 @@ const Chatbot = () => {
           id: 1,
           type: 'bot',
           text: language === 'hi'
-            ? "नमस्ते! 🙏 मैं सेतु दूत, आपका एआई सहायक हूं। मुझे अपने बारे में बताएं (जैसे 'मैं राजस्थान से 22 वर्षीय SC छात्र हूं') और मैं आपके लिए सर्वोत्तम योजनाएं खोजूंगा!"
-            : "Namaste! 🙏 I am Setu Doot, your AI assistant. Tell me about yourself (e.g. 'I am a 22 year old SC student from Rajasthan') and I will find the best schemes for you!",
+            ? "नमस्ते! 🙏 मैं सेतु दूत, आपका एआई सहायक हूं। मुझे अपने बारे में बताएं (जैसे 'मैं राजस्थान से 22 वर्षीय SC छात्र हूं') और मैं आपके लिए सर्वोत्तम योजनाएं खोजूंगा! आप किसी योजना के बारे में सवाल भी पूछ सकते हैं।"
+            : "Namaste! 🙏 I am Setu Doot, your AI assistant. Tell me about yourself (e.g. 'I am a 22 year old SC student from Rajasthan') and I will find the best schemes for you! You can also ask me details about any specific scheme.",
           time: new Date()
         }
       ]);
@@ -34,60 +35,138 @@ const Chatbot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  const sendBotReply = (text) => {
+    setTimeout(() => {
+      setMessages(prev => [...prev, {
+        id: Date.now(),
+        type: 'bot',
+        text: text,
+        time: new Date()
+      }]);
+      setIsTyping(false);
+    }, 1000 + Math.random() * 800); // slightly faster typing
+  };
+
   // Smart Heuristic AI Logic (Simulated NLP)
   const processMessage = (userText) => {
     const text = userText.toLowerCase();
+    let replyText = "";
 
-    // Extract parameters
-    let matchedCategory = "All";
-    let matchedState = "All";
-    let matchedOccupation = "All";
-    let matchedAge = 25; // Default assumption
+    // 1. GREETING INTENT
+    const greetings = ["hi", "hello", "hey", "namaste", "pranam"];
+    const isGreeting = greetings.some(g => text.match(new RegExp(`\\b${g}\\b`)));
+    if (isGreeting && text.length < 20) {
+      replyText = language === 'hi' 
+        ? "नमस्ते! 🙏 मैं आपकी कैसे मदद कर सकता हूँ? आप किसी योजना के बारे में पूछ सकते हैं, या अपनी प्रोफ़ाइल बता सकते हैं।" 
+        : "Hello! 🙏 How can I help you today? You can ask about a specific scheme or tell me your profile to get recommendations.";
+      return sendBotReply(replyText);
+    }
 
-    // 1. Check State
-    const states = ["rajasthan", "uttar pradesh", "maharashtra", "delhi", "bihar", "punjab", "gujarat"];
-    for (let st of states) {
-      if (text.includes(st)) {
-        matchedState = st.charAt(0).toUpperCase() + st.slice(1);
+    // 2. SCHEME INQUIRY INTENT (Finding a scheme by name)
+    let foundScheme = null;
+    for (let scheme of schemes) {
+      const simpleTitle = scheme.title.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+      const simpleText = text.replace(/[^a-z0-9 ]/g, '');
+      
+      const keywords = simpleTitle.split(' ').filter(w => w.length > 3);
+      const hasKeywordMatch = keywords.some(kw => text.includes(kw));
+      
+      if (hasKeywordMatch || simpleText.includes(simpleTitle)) {
+        foundScheme = scheme;
         break;
       }
     }
 
-    // 2. Check Caste/Category
+    // Prioritize scheme discovery if user explicitly mentions a scheme name
+    if (foundScheme && !text.includes("i am") && !text.includes("my age")) {
+      setContextScheme(foundScheme);
+      replyText = language === 'hi'
+        ? `**${foundScheme.title}** के बारे में:\n\n${foundScheme.description}\n\nआप मुझसे इसके फायदे (benefits), ज़रूरी कागज़ (documents), या आखिरी तारीख (deadline) के बारे में पूछ सकते हैं।`
+        : `About **${foundScheme.title}**: \n\n${foundScheme.description}\n\nFeel free to ask me about its benefits, required documents, or the application deadline.`;
+      return sendBotReply(replyText);
+    }
+
+    // 3. FIELD QUERY INTENT (Asking about the scheme in context)
+    if (contextScheme) {
+      const isBenefits = text.includes("benefit") || text.includes("fayda") || text.includes("paisa") || text.includes("kya milega");
+      const isDocs = text.includes("document") || text.includes("kagaz") || text.includes("proof");
+      const isDeadline = text.includes("deadline") || text.includes("last date") || text.includes("akhiri");
+      const isEligibility = text.includes("eligibility") || text.includes("kaun") || text.includes("apply") || text.includes("patrata");
+
+      if (isBenefits) {
+        replyText = language === 'hi'
+          ? `**${contextScheme.title} के फायदे:**\n${contextScheme.benefits}`
+          : `**Benefits of ${contextScheme.title}:**\n${contextScheme.benefits}`;
+        return sendBotReply(replyText);
+      }
+      
+      if (isDocs) {
+        replyText = language === 'hi'
+          ? `**${contextScheme.title} के लिए ज़रूरी कागज़:**\n- ${contextScheme.requiredDocuments.join('\n- ')}`
+          : `**Required Documents for ${contextScheme.title}:**\n- ${contextScheme.requiredDocuments.join('\n- ')}`;
+        return sendBotReply(replyText);
+      }
+
+      if (isDeadline) {
+        const d = new Date(contextScheme.deadline).toLocaleDateString();
+        replyText = language === 'hi'
+          ? `**${contextScheme.title}** के लिए आवेदन करने की अंतिम तिथि **${d}** है।`
+          : `The deadline to apply for **${contextScheme.title}** is **${d}**.`;
+        return sendBotReply(replyText);
+      }
+
+      if (isEligibility) {
+        const e = contextScheme.eligibility;
+        replyText = language === 'hi'
+          ? `**पात्रता (Eligibility):**\nआयु: ${e.minAge}-${e.maxAge} वर्ष\nअधिकतम आय: ₹${e.maxIncome}\nश्रेणी: ${e.allowedCategories.join(', ')}`
+          : `**Eligibility Criteria:**\nAge: ${e.minAge}-${e.maxAge} years\nMax Income: ₹${e.maxIncome}\nCategory: ${e.allowedCategories.join(', ')}`;
+        return sendBotReply(replyText);
+      }
+    }
+
+    // 4. PROFILE MATCHING INTENT (Fallback to existing logic)
+    let matchedCategory = "All";
+    let matchedState = "All";
+    let matchedOccupation = "All";
+    let matchedAge = 25;
+
+    const states = ["rajasthan", "uttar pradesh", "maharashtra", "delhi", "bihar", "punjab", "gujarat", "madhya pradesh"];
+    for (let st of states) {
+      if (text.includes(st)) {
+        matchedState = st.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        break;
+      }
+    }
+
     if (text.includes("sc") || text.includes("scheduled caste")) matchedCategory = "SC";
     else if (text.includes("st") || text.includes("scheduled tribe")) matchedCategory = "ST";
     else if (text.includes("obc") || text.includes("backward")) matchedCategory = "OBC";
     else if (text.includes("general")) matchedCategory = "General";
 
-    // 3. Check Occupation
     if (text.includes("student") || text.includes("padhai") || text.includes("college")) matchedOccupation = "Student";
     else if (text.includes("farmer") || text.includes("kisan") || text.includes("kheti")) matchedOccupation = "Farmer";
     else if (text.includes("business") || text.includes("vyapar")) matchedOccupation = "Business Owner";
     else if (text.includes("retired") || text.includes("pension")) matchedOccupation = "Retired";
+    else if (text.includes("labour") || text.includes("mazdoor")) matchedOccupation = "Labourer";
 
-    // 4. Age extraction (regex for digits)
     const ageMatch = text.match(/\b(\d{1,2})\b/);
     if (ageMatch && parseInt(ageMatch[1]) > 5 && parseInt(ageMatch[1]) < 100) {
       matchedAge = parseInt(ageMatch[1]);
     }
 
-    // Now filter schemes based on extracted info
     let recommendations = schemes.filter(scheme => {
-      // Very loose matching for chatbot to be helpful
       let sMatch = scheme.state === 'Central' || scheme.state === matchedState || scheme.eligibility?.allowedStates?.includes('All');
       let cMatch = scheme.eligibility?.allowedCategories?.includes(matchedCategory) || scheme.eligibility?.allowedCategories?.includes('All') || scheme.eligibility?.allowedCategories?.includes('SC/ST');
       let oMatch = scheme.eligibility?.allowedOccupations?.includes(matchedOccupation) || scheme.eligibility?.allowedOccupations?.includes('All');
 
-      // Bonus: If user mentions 'women' or 'girl'
       if ((text.includes("women") || text.includes("girl") || text.includes("female")) && scheme.eligibility?.allowedGenders?.includes('Male') && !scheme.eligibility?.allowedGenders?.includes('Female')) {
         return false;
       }
 
-      // Check special categories
       let isSpecialMatch = true;
       const specialCats = scheme.eligibility?.targetSpecialCategories || [];
       if (specialCats.length > 0) {
-        isSpecialMatch = false; // Deny by default if the scheme targets special categories
+        isSpecialMatch = false; 
         if (specialCats.includes("Widow") && (text.includes("widow") || text.includes("vidhwa"))) isSpecialMatch = true;
         if (specialCats.includes("Disabled") && (text.includes("disabled") || text.includes("divyang") || text.includes("handicap"))) isSpecialMatch = true;
       }
@@ -95,31 +174,21 @@ const Chatbot = () => {
       return sMatch && cMatch && oMatch && isSpecialMatch;
     });
 
-    // Generate smart response
-    setTimeout(() => {
-      let replyText = "";
-      if (recommendations.length > 0) {
-        if (language === 'hi') {
-          replyText = `आपके द्वारा बताई गई जानकारी के आधार पर (राज्य: **${matchedState}**, श्रेणी: **${matchedCategory}**, व्यवसाय: **${matchedOccupation}**), मुझे आपके लिए **${recommendations.length}** अत्यधिक उपयुक्त योजनाएं मिली हैं!\n\nशीर्ष सिफारिशें:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nआप योजना पोर्टल में इनके लिए आवेदन कर सकते हैं!`;
-        } else {
-          replyText = `Based on what you told me (State: **${matchedState}**, Category: **${matchedCategory}**, Occupation: **${matchedOccupation}**), I found **${recommendations.length}** highly suitable schemes for you!\n\nTop recommendations:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nYou can apply for these in the Schemes portal!`;
-        }
+    if (recommendations.length > 0) {
+      if (language === 'hi') {
+        replyText = `आपके द्वारा बताई गई जानकारी के आधार पर (राज्य: **${matchedState}**, श्रेणी: **${matchedCategory}**, व्यवसाय: **${matchedOccupation}**), मुझे आपके लिए **${recommendations.length}** अत्यधिक उपयुक्त योजनाएं मिली हैं!\n\nशीर्ष सिफारिशें:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nआप योजना पोर्टल में इनके लिए आवेदन कर सकते हैं!`;
       } else {
-        if (language === 'hi') {
-          replyText = `मैंने आपकी प्रोफ़ाइल (राज्य: ${matchedState}, श्रेणी: ${matchedCategory}) का विश्लेषण किया है। वर्तमान में, मुझे कोई सटीक मेल नहीं मिला है, लेकिन आपको एक्सप्लोरर में "केंद्रीय योजनाएं" देखनी चाहिए जो सभी पर लागू होती हैं!`;
-        } else {
-          replyText = `I analyzed your profile (State: ${matchedState}, Category: ${matchedCategory}). Currently, I don't see an exact match, but you should check the "Central Schemes" in the explorer which apply to everyone!`;
-        }
+        replyText = `Based on what you told me (State: **${matchedState}**, Category: **${matchedCategory}**, Occupation: **${matchedOccupation}**), I found **${recommendations.length}** highly suitable schemes for you!\n\nTop recommendations:\n${recommendations.slice(0, 3).map(r => `✅ **${r.title}**: ${r.benefits}`).join("\n\n")}\n\nYou can apply for these in the Schemes portal!`;
       }
+    } else {
+      if (language === 'hi') {
+        replyText = `मैंने आपकी प्रोफ़ाइल (राज्य: ${matchedState}, श्रेणी: ${matchedCategory}) का विश्लेषण किया है। वर्तमान में, मुझे कोई सटीक मेल नहीं मिला है, लेकिन आपको एक्सप्लोरर में "केंद्रीय योजनाएं" देखनी चाहिए जो सभी पर लागू होती हैं!`;
+      } else {
+        replyText = `I analyzed your profile (State: ${matchedState}, Category: ${matchedCategory}). Currently, I don't see an exact match, but you should check the "Central Schemes" in the explorer which apply to everyone!`;
+      }
+    }
 
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        type: 'bot',
-        text: replyText,
-        time: new Date()
-      }]);
-      setIsTyping(false);
-    }, 1500 + Math.random() * 1000); // 1.5 to 2.5s typing delay
+    sendBotReply(replyText);
   };
 
   const handleSend = (e) => {
