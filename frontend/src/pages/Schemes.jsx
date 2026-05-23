@@ -28,15 +28,18 @@ const Schemes = () => {
     if (categoryFilter !== 'All') {
       const allowedOcc = scheme.eligibility?.allowedOccupations || [];
       if (categoryFilter === 'Women') {
-        categoryMatch = scheme.eligibility?.allowedGenders?.includes('Female');
+        categoryMatch = scheme.eligibility?.allowedGenders?.includes('Female') && !scheme.eligibility?.allowedGenders?.includes('Male');
       } else if (categoryFilter === 'Widow') {
         categoryMatch = scheme.eligibility?.targetSpecialCategories?.includes('Widow') || scheme.title.toLowerCase().includes('widow');
       } else if (categoryFilter === 'Disabled') {
         categoryMatch = scheme.eligibility?.targetSpecialCategories?.includes('Disabled') || scheme.title.toLowerCase().includes('divyang') || scheme.title.toLowerCase().includes('disable');
       } else if (categoryFilter === 'Pension') {
         categoryMatch = scheme.title.toLowerCase().includes('pension') || allowedOcc.includes('Retired');
+      } else if (categoryFilter === 'Startup') {
+        categoryMatch = allowedOcc.includes('Business Owner') || scheme.title.toLowerCase().includes('startup') || scheme.title.toLowerCase().includes('mudra');
       } else {
-        categoryMatch = allowedOcc.includes(categoryFilter) || allowedOcc.includes("All");
+        // Strict match: only show if the scheme explicitly targets this occupation
+        categoryMatch = allowedOcc.includes(categoryFilter);
       }
     }
 

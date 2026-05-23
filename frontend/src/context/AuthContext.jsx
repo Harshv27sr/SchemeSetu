@@ -452,6 +452,44 @@ const DEFAULT_SCHEMES = [
       allowedGenders: ["Male", "Female", "Other"],
       targetSpecialCategories: ["Disabled"]
     }
+  },
+  {
+    _id: "scheme_startup_india",
+    title: "Startup India Seed Fund Scheme",
+    description: "Provides financial assistance to startups for proof of concept, prototype development, product trials, market entry, and commercialization.",
+    benefits: "Seed funding of up to ₹50 Lakhs for eligible early-stage startups.",
+    state: "Central",
+    category: "Startup",
+    deadline: "2026-12-31",
+    requiredDocuments: ["Aadhaar Card", "DPIIT Recognition Certificate", "Project Report", "Company Registration"],
+    eligibility: {
+      minAge: 18,
+      maxAge: 65,
+      maxIncome: 9999999,
+      allowedOccupations: ["Business Owner"],
+      allowedCategories: ["General", "OBC", "SC", "ST"],
+      allowedStates: ["All"],
+      allowedGenders: ["Male", "Female", "Other"]
+    }
+  },
+  {
+    _id: "scheme_mudra_yojana",
+    title: "PM Mudra Yojana (PMMY)",
+    description: "Provides loans up to ₹10 Lakhs to non-corporate, non-farm small/micro enterprises.",
+    benefits: "Collateral-free business loans up to ₹10 Lakhs at subsidized interest rates.",
+    state: "Central",
+    category: "Startup",
+    deadline: "2027-03-31",
+    requiredDocuments: ["Aadhaar Card", "Business Plan", "Bank Statement"],
+    eligibility: {
+      minAge: 18,
+      maxAge: 65,
+      maxIncome: 9999999,
+      allowedOccupations: ["Business Owner", "Farmer", "Unemployed", "Others"],
+      allowedCategories: ["General", "OBC", "SC", "ST"],
+      allowedStates: ["All"],
+      allowedGenders: ["Male", "Female", "Other"]
+    }
   }
 ];
 
