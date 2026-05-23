@@ -11,7 +11,7 @@ export const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
       
       // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'schemesetu_secure_hackathon_jwt_secret_key_123');
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'schemesetu_super_secret_jwt_2026');
       
       // Get user from the token, omitting password
       req.user = await User.findById(decoded.id).select('-password');
