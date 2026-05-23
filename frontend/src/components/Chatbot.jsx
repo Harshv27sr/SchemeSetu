@@ -83,7 +83,16 @@ const Chatbot = () => {
         return false;
       }
 
-      return sMatch && cMatch && oMatch;
+      // Check special categories
+      let isSpecialMatch = true;
+      const specialCats = scheme.eligibility?.targetSpecialCategories || [];
+      if (specialCats.length > 0) {
+        isSpecialMatch = false; // Deny by default if the scheme targets special categories
+        if (specialCats.includes("Widow") && (text.includes("widow") || text.includes("vidhwa"))) isSpecialMatch = true;
+        if (specialCats.includes("Disabled") && (text.includes("disabled") || text.includes("divyang") || text.includes("handicap"))) isSpecialMatch = true;
+      }
+
+      return sMatch && cMatch && oMatch && isSpecialMatch;
     });
 
     // Generate smart response
