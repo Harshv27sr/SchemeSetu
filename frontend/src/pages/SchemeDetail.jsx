@@ -1,7 +1,9 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { CheckCircle2, XCircle, FileText, ArrowLeft, Calendar, IndianRupee, ShieldCheck, ChevronRight, HelpCircle } from 'lucide-react';
+import { CheckCircle2, XCircle, FileText, ArrowLeft, Calendar, IndianRupee, ShieldCheck, ChevronRight } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const SchemeDetail = () => {
   const { id } = useParams();
@@ -25,7 +27,7 @@ const SchemeDetail = () => {
   const el = calculateEligibility(scheme);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
       {/* Back button */}
       <Link 
@@ -82,40 +84,44 @@ const SchemeDetail = () => {
           )}
         </div>
 
-        {/* Benefits & Description panel */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        {/* Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Details & Criteria */}
-          <div className="md:col-span-8 space-y-8">
-            {/* Description */}
-            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-3">
-              <h2 className="text-base font-extrabold text-slate-800 dark:text-white">Scheme Overview & Description</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{scheme.description}</p>
-            </div>
-
-            {/* Benefits */}
-            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-3">
-              <h2 className="text-base font-extrabold text-slate-800 dark:text-white">Direct Citizen Benefits</h2>
-              <div className="p-4 bg-govgreen-50/5 dark:bg-govgreen-950/10 border border-govgreen-100/50 dark:border-govgreen-900/20 rounded-2xl text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-                💰 {scheme.benefits}
+          {/* Left Column: Extensive Details */}
+          <div className="lg:col-span-8 space-y-8">
+            
+            {/* Details Section */}
+            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-none">
+              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Details</h2>
+              <div className="markdown-content">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {scheme.detailedDescription || scheme.description}
+                </ReactMarkdown>
               </div>
             </div>
 
-            {/* Eligibility Parameter Comparison breakdown */}
-            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-4">
-              <h2 className="text-base font-extrabold text-slate-800 dark:text-white">Eligibility Criteria Breakdown</h2>
+            {/* Benefits Section */}
+            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-none">
+              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Benefits</h2>
+              <div className="markdown-content">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {scheme.detailedBenefits || scheme.benefits}
+                </ReactMarkdown>
+              </div>
+            </div>
+
+            {/* Eligibility Section */}
+            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-none">
+              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Eligibility</h2>
               
-              {!user?.profile?.fullName ? (
-                <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl text-center space-y-2">
-                  <p className="text-sm text-slate-500 dark:text-slate-400">Sign in and set up your citizen profile variables to review the matching score breakdown.</p>
-                  <Link to="/login" className="text-sm text-govblue-600 dark:text-govblue-400 font-bold hover:underline">Log In & Check Profile &rarr;</Link>
-                </div>
-              ) : (
-                <div className="space-y-3.5">
+              {/* Automated Eligibility Matcher */}
+              {user?.profile?.fullName ? (
+                <div className="mb-6 space-y-3.5 p-4 bg-slate-100/50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl">
+                  <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">Your Automated Match Results</h3>
                   {el.reasons.map((reason, idx) => (
                     <div 
                       key={idx}
-                      className={`p-3.5 border rounded-2xl flex items-start justify-between gap-4 transition-all ${
+                      className={`p-3 border rounded-xl flex items-start justify-between gap-4 transition-all ${
                         reason.matched 
                           ? 'bg-govgreen-50/10 dark:bg-govgreen-950/10 border-govgreen-100/50 dark:border-govgreen-900/20 text-slate-700 dark:text-slate-300' 
                           : 'bg-rose-50/5 dark:bg-rose-950/10 border-rose-100/50 dark:border-rose-900/20 text-slate-600 dark:text-slate-400'
@@ -124,46 +130,64 @@ const SchemeDetail = () => {
                       <div className="flex items-start space-x-2.5">
                         <span className="mt-0.5 shrink-0">
                           {reason.matched ? (
-                            <CheckCircle2 className="w-4.5 h-4.5 text-govgreen-600 dark:text-govgreen-400" />
+                            <CheckCircle2 className="w-4 h-4 text-govgreen-600 dark:text-govgreen-400" />
                           ) : (
-                            <XCircle className="w-4.5 h-4.5 text-rose-500 dark:text-rose-400" />
+                            <XCircle className="w-4 h-4 text-rose-500 dark:text-rose-400" />
                           )}
                         </span>
-                        <div className="text-sm font-semibold">
+                        <div className="text-sm font-medium">
                           <p className={reason.matched ? "text-slate-800 dark:text-slate-200" : "text-slate-700 dark:text-slate-300"}>{reason.text}</p>
                         </div>
                       </div>
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                        reason.matched ? 'bg-govgreen-50 dark:bg-govgreen-950/20 text-govgreen-700 dark:text-govgreen-400' : 'bg-rose-50 dark:bg-rose-950/20 text-rose-700 dark:text-rose-400'
-                      }`}>
-                        {reason.matched ? 'Match' : 'Mismatch'}
-                      </span>
                     </div>
                   ))}
                 </div>
+              ) : (
+                <div className="mb-6 p-4 bg-slate-100/50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-2xl flex items-center justify-between">
+                  <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">Sign in to automatically check your eligibility.</span>
+                  <Link to="/login" className="text-sm text-govblue-600 dark:text-govblue-400 font-bold hover:underline">Log In &rarr;</Link>
+                </div>
               )}
-            </div>
-          </div>
 
-          {/* Right Column: Required files checklist & Apply trigger */}
-          <div className="md:col-span-4 space-y-8">
-            {/* Required Documents checklist */}
-            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-4">
-              <h2 className="text-base font-extrabold text-slate-800 dark:text-white">Required Documents</h2>
-              <div className="space-y-2.5">
-                {scheme.requiredDocuments.map((doc, idx) => (
-                  <div key={idx} className="flex items-center space-x-2 p-2 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5 rounded-xl">
-                    <FileText className="w-4 h-4 text-govblue-600 dark:text-govblue-400 shrink-0" />
-                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300 leading-tight">{doc}</span>
-                  </div>
-                ))}
+              {/* Detailed Markdown Eligibility */}
+              <div className="markdown-content border-t border-slate-200 dark:border-white/10 pt-6">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {scheme.detailedEligibility || "Please refer to the general guidelines."}
+                </ReactMarkdown>
               </div>
             </div>
 
+            {/* Application Process Section */}
+            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-none">
+              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Application Process</h2>
+              <div className="markdown-content">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {scheme.applicationProcess || "Apply via the official portal or your local CSC."}
+                </ReactMarkdown>
+              </div>
+            </div>
+            
+            {/* Documents Required */}
+            <div className="bg-slate-50/90 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-none space-y-4">
+              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4">Documents Required</h2>
+              <div className="markdown-content">
+                <ol>
+                  {scheme.requiredDocuments.map((doc, idx) => (
+                    <li key={idx}><strong>{doc}</strong></li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Action Panel */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+            
             {/* Action CTA Panel */}
             <div className="bg-gradient-gov dark:bg-gradient-to-r dark:from-slate-900 dark:to-slate-800 text-white rounded-3xl p-6 shadow-xl dark:shadow-none border dark:border-white/5 space-y-4 text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
-              <h3 className="text-base font-extrabold">Guided Multi-step Application</h3>
+              <h3 className="text-xl font-extrabold">Ready to Apply?</h3>
               <p className="text-sm text-govblue-100 dark:text-slate-400 leading-normal">
                 Submit details, upload certifications, run automatic OCR checks, and send file to the Admin desk.
               </p>
@@ -208,6 +232,7 @@ const SchemeDetail = () => {
                 <span>Government Secure Portal Link</span>
               </div>
             </div>
+            
           </div>
         </div>
       </div>

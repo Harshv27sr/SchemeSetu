@@ -14,6 +14,22 @@ const SchemeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  detailedDescription: {
+    type: String,
+    default: ''
+  },
+  detailedBenefits: {
+    type: String,
+    default: ''
+  },
+  detailedEligibility: {
+    type: String,
+    default: ''
+  },
+  applicationProcess: {
+    type: String,
+    default: ''
+  },
   state: {
     type: String,
     required: true,
