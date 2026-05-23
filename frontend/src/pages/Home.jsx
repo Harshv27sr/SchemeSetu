@@ -147,62 +147,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section className="py-20 bg-[#1E242E] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div className="space-y-6">
-              <h2 className="text-4xl font-extrabold tracking-tight">Overview</h2>
-              <div className="space-y-5 text-[17px] leading-relaxed text-slate-200">
-                <p>
-                  SchemeSetu is a national platform that aims to provide a "one stop" solution for finding government schemes.
-                </p>
-                <p>
-                  It provides a transformative and technology-based solution that displays information about the scheme based on the eligibility of the citizen.
-                </p>
-                <p>
-                  This portal helps citizens find the right government schemes for them. It also provides detailed information on how to apply for various government schemes. SchemeSetu eliminates the hassle of having to visit various government websites.
-                </p>
-              </div>
-              <div className="pt-2">
-                <Link
-                  to="/schemes"
-                  className="inline-flex items-center space-x-2 px-6 py-2.5 border border-white rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
-                >
-                  <span>See more</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Visual (Video Thumbnail) */}
-            <div className="relative mx-auto w-full max-w-lg">
-              {/* Offset shadow layers */}
-              <div className="absolute -bottom-4 -left-4 w-full h-full border border-slate-600 rounded-xl rounded-tl-none rounded-br-none -z-10"></div>
-              <div className="absolute -bottom-2 -left-2 w-full h-full border border-slate-500 rounded-xl rounded-tl-none rounded-br-none -z-10"></div>
-              
-              <div className="relative rounded-xl overflow-hidden shadow-2xl bg-black border-[3px] border-black">
-                <img 
-                  src="/overview-video.png" 
-                  alt="Farmer using SchemeSetu app on phone" 
-                  className="w-full h-[320px] object-cover opacity-90"
-                />
-                
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-16 h-16 bg-[#21C55D] rounded-full flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer hover:bg-green-500 transition-colors group">
-                    {/* SVG Play Icon */}
-                    <svg className="w-6 h-6 text-white ml-1 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Features Grid */}
       <section className="py-20 lg:py-28 relative bg-transparent dark:bg-slate-900 transition-colors">
@@ -425,6 +369,63 @@ const Home = () => {
             >
               {t('getStartedFree')}
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Overview Section */}
+      <section className="py-20 bg-[#1E242E] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <h2 className="text-4xl font-extrabold tracking-tight">Overview</h2>
+              <div className="space-y-5 text-[17px] leading-relaxed text-slate-200">
+                <p>
+                  SchemeSetu is a national platform that aims to provide a "one stop" solution for finding government schemes.
+                </p>
+                <p>
+                  It provides a transformative and technology-based solution that displays information about the scheme based on the eligibility of the citizen.
+                </p>
+                <p>
+                  This portal helps citizens find the right government schemes for them. It also provides detailed information on how to apply for various government schemes. SchemeSetu eliminates the hassle of having to visit various government websites.
+                </p>
+              </div>
+              <div className="pt-2">
+                <Link
+                  to="/schemes"
+                  className="inline-flex items-center space-x-2 px-6 py-2.5 border border-white rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
+                >
+                  <span>See more</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Visual (Video Thumbnail) */}
+            <div className="relative mx-auto w-full max-w-lg">
+              {/* Offset shadow layers */}
+              <div className="absolute -bottom-4 -left-4 w-full h-full border border-slate-600 rounded-xl rounded-tl-none rounded-br-none -z-10"></div>
+              <div className="absolute -bottom-2 -left-2 w-full h-full border border-slate-500 rounded-xl rounded-tl-none rounded-br-none -z-10"></div>
+              
+              <div className="relative rounded-xl overflow-hidden shadow-2xl bg-black border-[3px] border-black">
+                <img 
+                  src="/overview-video.png" 
+                  alt="Farmer using SchemeSetu app on phone" 
+                  className="w-full h-[320px] object-cover opacity-90"
+                />
+                
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-16 h-16 bg-[#21C55D] rounded-full flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer hover:bg-green-500 transition-colors group">
+                    {/* SVG Play Icon */}
+                    <svg className="w-6 h-6 text-white ml-1 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
