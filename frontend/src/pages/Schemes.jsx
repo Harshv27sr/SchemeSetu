@@ -87,7 +87,7 @@ const Schemes = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
         {/* Filters Sidebar Control panel */}
-        <div className="lg:col-span-3 bg-slate-50/95 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-6">
+        <div className="lg:col-span-3 lg:sticky lg:top-24 max-h-[calc(100vh-120px)] overflow-y-auto pr-1 bg-slate-50/95 dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-none space-y-6">
           <div className="flex justify-between items-center pb-4 border-b border-slate-200/50 dark:border-white/5">
             <span className="font-bold text-slate-800 dark:text-slate-200 flex items-center space-x-1.5">
               <Filter className="w-4.5 h-4.5 text-govblue-600 dark:text-govblue-400" />

@@ -273,7 +273,7 @@ const Home = () => {
             <motion.div variants={itemVariants}>
               <Link to="/schemes" className="block group">
                 <div className="bg-[#1e293b] hover:bg-[#243044] border border-slate-700/50 hover:border-slate-600/60 rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer">
-                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">4700+</h3>
+                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">100+</h3>
                   <p className="text-sm text-slate-400 font-medium flex items-center justify-center space-x-1 group-hover:text-slate-300 transition-colors">
                     <span>Total Schemes</span>
                     <ArrowRight className="w-4 h-4" />
@@ -285,7 +285,7 @@ const Home = () => {
             <motion.div variants={itemVariants}>
               <Link to="/schemes" className="block group">
                 <div className="bg-[#1e293b] hover:bg-[#243044] border border-slate-700/50 hover:border-slate-600/60 rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer">
-                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">680+</h3>
+                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">60+</h3>
                   <p className="text-sm text-slate-400 font-medium flex items-center justify-center space-x-1 group-hover:text-slate-300 transition-colors">
                     <span>Central Schemes</span>
                     <ArrowRight className="w-4 h-4" />
@@ -297,7 +297,7 @@ const Home = () => {
             <motion.div variants={itemVariants}>
               <Link to="/schemes" className="block group">
                 <div className="bg-[#1e293b] hover:bg-[#243044] border border-slate-700/50 hover:border-slate-600/60 rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer">
-                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">4020+</h3>
+                  <h3 className="text-5xl font-black text-white mb-2 tracking-tight">40+</h3>
                   <p className="text-sm text-slate-400 font-medium flex items-center justify-center space-x-1 group-hover:text-slate-300 transition-colors">
                     <span>States/UTs Schemes</span>
                     <ArrowRight className="w-4 h-4" />
