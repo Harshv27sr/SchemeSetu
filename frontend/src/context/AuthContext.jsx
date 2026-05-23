@@ -773,22 +773,26 @@ export const AuthProvider = ({ children }) => {
           setSchemes(res.data);
           
           if (token) {
-            const profileRes = await axios.get(`${API_URL}/auth/profile`);
-            setUser(profileRes.data);
-            
-            const appRes = await axios.get(`${API_URL}/applications`);
-            setApplications(appRes.data);
-
+            const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
+              const profileRes = await axios.get(`${API_URL}/auth/profile`, config);
+              setUser(profileRes.data);
+              
+              const appRes = await axios.get(`${API_URL}/applications`, config);
+              setApplications(appRes.data);
+
               if (profileRes.data.role === 'Admin') {
-                const ticketRes = await axios.get(`${API_URL}/grievances/all`);
+                const ticketRes = await axios.get(`${API_URL}/grievances/all`, config);
                 setTickets(ticketRes.data);
               } else {
-                const ticketRes = await axios.get(`${API_URL}/grievances`);
+                const ticketRes = await axios.get(`${API_URL}/grievances`, config);
                 setTickets(ticketRes.data);
               }
-            } catch (ticketErr) {
-              console.error("Grievances load error", ticketErr);
+            } catch (authErr) {
+              console.error("Auth token invalid or expired", authErr);
+              setToken(null);
+              setUser(null);
+              localStorage.removeItem('token');
             }
           }
         }
