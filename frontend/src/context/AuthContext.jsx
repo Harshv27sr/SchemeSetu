@@ -719,13 +719,13 @@ const DEFAULT_SCHEMES = [
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [language, setLanguage] = useState(localStorage.getItem('lang') || 'en');
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [schemes, setSchemes] = useState(DEFAULT_SCHEMES);
   const [applications, setApplications] = useState([]);
   const [tickets, setTickets] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [apiActive, setApiActive] = useState(false);
 
   // Sync token with axios defaults
@@ -759,52 +759,64 @@ export const AuthProvider = ({ children }) => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  // Load applications/schemes from MERN backend server
+  // Load schemes from backend (runs once)
   useEffect(() => {
-    const initData = async () => {
+    const loadSchemes = async () => {
       try {
-        setLoading(true);
-        // Test backend endpoint
         const health = await axios.get(`${API_URL}/auth/health`);
         if (health.status === 200) {
           setApiActive(true);
-          // Load real schemas from backend
           const res = await axios.get(`${API_URL}/schemes`);
           setSchemes(res.data);
-          
-          if (token) {
-            const config = { headers: { Authorization: `Bearer ${token}` } };
-            try {
-              const profileRes = await axios.get(`${API_URL}/auth/profile`, config);
-              setUser(profileRes.data);
-              
-              const appRes = await axios.get(`${API_URL}/applications`, config);
-              setApplications(appRes.data);
-
-              if (profileRes.data.role === 'Admin') {
-                const ticketRes = await axios.get(`${API_URL}/grievances/all`, config);
-                setTickets(ticketRes.data);
-              } else {
-                const ticketRes = await axios.get(`${API_URL}/grievances`, config);
-                setTickets(ticketRes.data);
-              }
-            } catch (authErr) {
-              console.error("Auth token invalid or expired", authErr);
-              setToken(null);
-              setUser(null);
-              localStorage.removeItem('token');
-            }
-          }
         }
       } catch (err) {
-        console.error("MERN Backend connection error", err);
+        console.error("Backend connection error", err);
         setApiActive(false);
+      }
+    };
+    loadSchemes();
+  }, []);
+
+  // Restore session on page load (runs once)
+  useEffect(() => {
+    const restoreSession = async () => {
+      const savedToken = localStorage.getItem('token');
+      if (!savedToken) {
+        setLoading(false);
+        return;
+      }
+      try {
+        const config = { headers: { Authorization: `Bearer ${savedToken}` } };
+        const profileRes = await axios.get(`${API_URL}/auth/profile`, config);
+        setUser(profileRes.data);
+        setToken(savedToken);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
+
+        try {
+          const appRes = await axios.get(`${API_URL}/applications`, config);
+          setApplications(appRes.data);
+        } catch (_) {}
+
+        try {
+          const role = profileRes.data.role;
+          const ticketUrl = role === 'Admin' ? `${API_URL}/grievances/all` : `${API_URL}/grievances`;
+          const ticketRes = await axios.get(ticketUrl, config);
+          setTickets(ticketRes.data);
+        } catch (_) {}
+
+      } catch (err) {
+        // Token expired or invalid - only clear if 401
+        if (err.response?.status === 401) {
+          localStorage.removeItem('token');
+          setToken(null);
+          setUser(null);
+        }
       } finally {
         setLoading(false);
       }
     };
-    initData();
-  }, [token]);
+    restoreSession();
+  }, []);
 
   // Translate helper function
   const t = (key) => {
