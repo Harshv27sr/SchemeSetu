@@ -415,15 +415,7 @@ const Home = () => {
                   className="w-full h-[320px] object-cover opacity-90"
                 />
                 
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-16 h-16 bg-[#21C55D] rounded-full flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer hover:bg-green-500 transition-colors group">
-                    {/* SVG Play Icon */}
-                    <svg className="w-6 h-6 text-white ml-1 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
+                {/* No Play Button Overlay */}
               </div>
             </div>
           </div>
