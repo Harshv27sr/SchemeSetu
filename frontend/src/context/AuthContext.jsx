@@ -16,6 +16,7 @@ const translations = {
     // Navbar
     home: "Home",
     schemes: "Explore Schemes",
+    about: "About Us",
     dashboard: "Dashboard",
     profile: "My Profile",
     adminDashboard: "Admin Console",
@@ -158,6 +159,7 @@ const translations = {
     // Navbar
     home: "मुख्य पृष्ठ",
     schemes: "योजनाएं खोजें",
+    about: "हमारे बारे में",
     dashboard: "डैशबोर्ड",
     profile: "मेरी प्रोफाइल",
     adminDashboard: "एडमिन कंसोल",

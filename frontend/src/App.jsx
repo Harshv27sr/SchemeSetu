@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Chatbot from './components/Chatbot';
 
 import Home from './pages/Home';
+import About from './pages/About';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
@@ -61,6 +62,7 @@ const AppContent = () => {
         <Routes>
           {/* Public Pages */}
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/schemes" element={<Schemes />} />

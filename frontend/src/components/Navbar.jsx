@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Menu, X, Globe, User, LogOut, LayoutDashboard, Search, FileText, Sun, Moon } from 'lucide-react';
+import logoDark from '../assets/logo-dark.jpg';
+import logoLight from '../assets/logo-light.jpg';
 
 const Navbar = () => {
   const { user, logout, language, setLanguage, t, theme, toggleTheme } = useAuth();
@@ -59,9 +61,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo Brand */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-govblue-600 to-govblue-500 flex items-center justify-center shadow-lg shadow-govblue-200/50 dark:shadow-none text-white font-bold text-xl border border-white/20 transform group-hover:rotate-6 transition-all duration-300">
-              SS
-            </div>
+            <img 
+              src={theme === 'dark' ? logoDark : logoLight} 
+              alt="SchemeSetu Logo" 
+              className="w-12 h-12 object-contain group-hover:scale-105 transition-all duration-300 mix-blend-multiply dark:mix-blend-screen"
+            />
             <div className="flex flex-col justify-center">
               <span className="text-2xl font-extrabold text-govblue-900 dark:text-white tracking-tight leading-none">SchemeSetu</span>
             </div>
@@ -74,6 +78,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/schemes" className={activeClassName}>
               {t('schemes')}
+            </NavLink>
+            <NavLink to="/about" className={activeClassName}>
+              {t('about')}
             </NavLink>
 
             {user && (
@@ -195,6 +202,10 @@ const Navbar = () => {
             <NavLink to="/schemes" onClick={() => setIsOpen(false)} className={mobileActiveClassName}>
               <Search className="w-4 h-4" />
               <span>{t('schemes')}</span>
+            </NavLink>
+            <NavLink to="/about" onClick={() => setIsOpen(false)} className={mobileActiveClassName}>
+              <Search className="w-4 h-4" />
+              <span>{t('about')}</span>
             </NavLink>
 
             {user ? (

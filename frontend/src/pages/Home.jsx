@@ -1,11 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
-import { Search, ShieldCheck, HeartHandshake, FileText, ArrowRight, CheckCircle2, ChevronRight, Activity, Bot } from 'lucide-react';
+import { Search, ShieldCheck, HeartHandshake, FileText, ArrowRight, CheckCircle2, ChevronRight, ChevronLeft, Activity, Bot } from 'lucide-react';
+
+import banner1 from '../assets/banner-1.jpg';
+import banner2 from '../assets/banner-2.jpg';
+import banner3 from '../assets/banner-3.jpg';
 
 const Home = () => {
   const { user, t } = useAuth();
+
+  const banners = [
+    {
+      id: 1,
+      image: banner1,
+      alt: "Rajasthan Lado Protsahan Yojana 2026",
+      link: "/schemes"
+    },
+    {
+      id: 2,
+      image: banner2,
+      alt: "PM Kisan Samman Nidhi Yojana",
+      link: "/schemes"
+    },
+    {
+      id: 3,
+      image: banner3,
+      alt: "Pradhan Mantri Gramin Awaas Yojana",
+      link: "/schemes"
+    }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % banners.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [banners.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % banners.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + banners.length) % banners.length);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -26,6 +68,64 @@ const Home = () => {
 
   return (
     <div className="bg-[#e8edf2] dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100 transition-colors duration-300">
+      
+      {/* Banner Slideshow Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 select-none">
+        <div className="relative w-full h-[210px] sm:h-[320px] md:h-[430px] lg:h-[510px] rounded-3xl overflow-hidden group border border-slate-200/60 dark:border-white/5 shadow-xl shadow-slate-200/40 dark:shadow-none bg-slate-950">
+          {/* Slides Container */}
+          <div 
+            className="w-full h-full flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {banners.map((banner) => (
+              <div key={banner.id} className="w-full h-full flex-shrink-0 relative">
+                <Link to={banner.link} className="block w-full h-full">
+                  <img 
+                    src={banner.image} 
+                    alt={banner.alt} 
+                    className="w-full h-full object-fill md:object-cover lg:object-fill" 
+                  />
+                  {/* Subtle overlay shading for dark mode */}
+                  <div className="absolute inset-0 bg-slate-950/5 dark:bg-slate-950/15 pointer-events-none transition-colors duration-300"></div>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* Left Arrow Button */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform active:scale-95 cursor-pointer z-20 shadow-lg"
+          >
+            <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7" />
+          </button>
+
+          {/* Right Arrow Button */}
+          <button 
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform active:scale-95 cursor-pointer z-20 shadow-lg"
+          >
+            <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7" />
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2.5 z-20">
+            {banners.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full border border-white/20 transition-all duration-300 cursor-pointer ${
+                  currentSlide === index 
+                    ? 'bg-govgreen-500 scale-110 shadow-md shadow-govgreen-500/50' 
+                    : 'bg-white/40 hover:bg-white/60'
+                }`}
+                title={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-slate-50 to-[#e8edf2]/30 dark:from-slate-900 dark:to-slate-950 border-b border-slate-200/50 dark:border-white/5">
         {/* Soft background glow circles */}
@@ -385,7 +485,7 @@ const Home = () => {
               </div>
               <div className="pt-2">
                 <Link
-                  to="/schemes"
+                  to="/about"
                   className="inline-flex items-center space-x-2 px-6 py-2.5 border border-white rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
                 >
                   <span>See more</span>
