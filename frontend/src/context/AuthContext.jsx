@@ -765,7 +765,7 @@ export const AuthProvider = ({ children }) => {
       try {
         setLoading(true);
         // Test backend endpoint
-        const health = await axios.get(`${API_URL}/auth`);
+        const health = await axios.get(`${API_URL}/auth/health`);
         if (health.status === 200) {
           setApiActive(true);
           // Load real schemas from backend
