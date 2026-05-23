@@ -55,7 +55,7 @@ const schemesData = [
       minAge: 18,
       maxAge: 99,
       maxIncome: 600000,
-      allowedOccupations: ["Student", "Farmer", "Business Owner", "Unemployed", "Retired", "Others"],
+      allowedOccupations: ["All"],
       allowedCategories: ["General", "OBC", "SC", "ST"],
       allowedStates: ["All"],
       allowedGenders: ["Male", "Female", "Other"]
@@ -73,7 +73,7 @@ const schemesData = [
       minAge: 0,
       maxAge: 21,
       maxIncome: 200000,
-      allowedOccupations: ["Student", "Others"],
+      allowedOccupations: ["All"],
       allowedCategories: ["General", "OBC", "SC", "ST"],
       allowedStates: ["Rajasthan"],
       allowedGenders: ["Female"]
@@ -91,7 +91,7 @@ const schemesData = [
       minAge: 18,
       maxAge: 40,
       maxIncome: 800000,
-      allowedOccupations: ["Farmer", "Business Owner", "Unemployed", "Others"],
+      allowedOccupations: ["All"],
       allowedCategories: ["General", "OBC", "SC", "ST"],
       allowedStates: ["All"],
       allowedGenders: ["Male", "Female", "Other"]
@@ -183,7 +183,7 @@ const schemesData = [
       minAge: 18,
       maxAge: 65,
       maxIncome: 9999999,
-      allowedOccupations: ["Business Owner", "Farmer", "Unemployed", "Others"],
+      allowedOccupations: ["Business Owner"],
       allowedCategories: ["General", "OBC", "SC", "ST"],
       allowedStates: ["All"],
       allowedGenders: ["Male", "Female", "Other"]
